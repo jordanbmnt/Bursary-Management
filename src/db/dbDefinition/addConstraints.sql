@@ -40,7 +40,7 @@ ADD CONSTRAINT [PK_UserID] PRIMARY KEY CLUSTERED ([UserID])
 GO
 
 ALTER TABLE [dbo].[User_Details]
-ADD CONSTRAINT [FK_UserDetails_ContanctDetailsID] FOREIGN KEY ([ContactDetailsID])
+ADD CONSTRAINT [FK_UserDetails_ContactDetailsID] FOREIGN KEY ([ContactDetailsID])
 REFERENCES [Contact_Details]([ContactDetailsID])
 
 GO
