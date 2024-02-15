@@ -16,7 +16,7 @@ BBD Bursary Manager is an app that helps BBD Software manage bursary funds for u
 ## Prerequisites and Dependencies
 
 - The applicants must meet the following criteria:
-- Under 35 years old
+- Up to 35 years old
 - Black, Indian or Coloured race
 - Average grade of 65% or higher
 - The maximum bursary amount is R125000 per student per year
