@@ -118,7 +118,7 @@ GO
 CREATE TABLE [dbo].[Roles]
 (
   [RoleID][int] IDENTITY(1,1) NOT NULL,
-  [Role][varchar](8) NOT NULL,
+  [Role][varchar](9) NOT NULL,
 
 );
  
