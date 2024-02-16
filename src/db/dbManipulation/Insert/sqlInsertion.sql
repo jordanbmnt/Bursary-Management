@@ -2,22 +2,23 @@
 USE BBD_BursaryDB;
 
 GO
-
-INSERT INTO [dbo].[Race]
+INSERT INTO
+  [dbo].[Race]
   ([Race])
 VALUES
   ('Black'),
   ('Indian'),
   ('Coloured');
 
-INSERT INTO [dbo].[Roles]
+INSERT INTO
+  [dbo].[Roles]
   ([Role])
 VALUES
   ('BBD'),
   ('Institute');
 
--- Inserting into Contact_Details table
-INSERT INTO [dbo].[Contact_Details]
+INSERT INTO
+  [dbo].[Contact_Details]
   ([PhoneNumber], [Email])
 VALUES
   ('1234567890', 'john.doe@example.com'),
@@ -46,44 +47,64 @@ VALUES
   ('1515151515', 'aaron.wright@example.com'),
   ('1616161616', 'amanda.king@example.com');
 
-
--- Inserting into Accreditation table
-INSERT INTO [dbo].[Accreditation]
+INSERT INTO
+  [dbo].[Accreditation]
   ([Name])
 VALUES
   ('Council on Higher Education (CHE)'),
   ('South African Qualifications Authority (SAQA)'),
   ('Higher Education Quality Committee (HEQC)'),
-  ('Quality Council for Trades and Occupations (QCTO)'),
-  ('Umalusi Council for Quality Assurance in General and Further Education and Training'),
-  ('Health Professions Council of South Africa (HPCSA)'),
-  ('Council for the Accreditation of Business Schools (CABS)'),
+  (
+    'Quality Council for Trades and Occupations (QCTO)'
+  ),
+  (
+    'Umalusi Council for Quality Assurance in General and Further Education and Training'
+  ),
+  (
+    'Health Professions Council of South Africa (HPCSA)'
+  ),
+  (
+    'Council for the Accreditation of Business Schools (CABS)'
+  ),
   ('The Independent Institute of Education (IIE)'),
-  ('South African Institute of Chartered Accountants (SAICA)'),
+  (
+    'South African Institute of Chartered Accountants (SAICA)'
+  ),
   ('Engineering Council of South Africa (ECSA)'),
-  ('Council for Higher Education in Art and Design (CHEAD)'),
+  (
+    'Council for Higher Education in Art and Design (CHEAD)'
+  ),
   ('South African Nursing Council (SANC)'),
   ('South African Pharmacy Council (SAPC)'),
-  ('Association of Chartered Certified Accountants (ACCA)'),
-  ('Southern African Association for Counselling and Development in Higher Education (SAACDHE)');
+  (
+    'Association of Chartered Certified Accountants (ACCA)'
+  ),
+  (
+    'Southern African Association for Counselling and Development in Higher Education (SAACDHE)'
+  );
 
--- Inserting into Bursary_Fund table
-INSERT INTO [dbo].[Bursary_Fund]
+INSERT INTO
+  [dbo].[Bursary_Fund]
   ([FundAmount])
 VALUES
   (15000000.00);
 
--- Inserting into Application_Status table
-INSERT INTO [dbo].[Application_Status]
+INSERT INTO
+  [dbo].[Application_Status]
   ([Status])
 VALUES
   ('Pending'),
   ('Approved'),
   ('Rejected');
 
--- Inserting into User_Details table
-INSERT INTO [dbo].[User_Details]
-  ([FirstName], [LastName], [ContactDetailsID], [RoleID])
+INSERT INTO
+  [dbo].[User_Details]
+  (
+  [FirstName],
+  [LastName],
+  [ContactDetailsID],
+  [RoleID]
+  )
 VALUES
   ('John', 'Doe', 1, 1),
   ('Jane', 'Smith', 2, 1),
@@ -111,10 +132,13 @@ VALUES
   ('Aaron', 'Wright', 24, 1),
   ('Amanda', 'King', 25, 1);
 
-
--- Inserting into Institute_Info table
-INSERT INTO [dbo].[Institute_Info]
-  ([InstituteName], [ContactDetailsID], [BBDBursaryInstituteStatus])
+INSERT INTO
+  [dbo].[Institute_Info]
+  (
+  [InstituteName],
+  [ContactDetailsID],
+  [BBDBursaryInstituteStatus]
+  )
 VALUES
   ('Institute A', 1, 2),
   ('Institute B', 2, 2),
@@ -127,8 +151,8 @@ VALUES
   ('Institute I', 9, 3),
   ('Institute J', 10, 3);
 
--- Inserting into Student table
-INSERT INTO [dbo].[Student]
+INSERT INTO
+  [dbo].[Student]
   ([UserID], [ID_Number], [RaceID])
 VALUES
   (2, '1234567890123', 1),
@@ -148,8 +172,8 @@ VALUES
   (24, '1139872343210', 1),
   (25, '9939876543210', 3);
 
--- Inserting into Head_Of_Department table
-INSERT INTO [dbo].[Head_Of_Department]
+INSERT INTO
+  [dbo].[Head_Of_Department]
   ([InstituteID], [UserID])
 VALUES
   (1, 1),
@@ -162,17 +186,21 @@ VALUES
   (8, 21),
   (9, 23);
 
--- Inserting into Institution_Fund_Allocation table
-INSERT INTO [dbo].[Institution_Fund_Allocation]
-  ([InstituteID], [AllocatedAmount], [BursaryFundID])
+INSERT INTO
+  [dbo].[Institution_Fund_Allocation]
+  (
+  [InstituteID],
+  [AllocatedAmount],
+  [BursaryFundID]
+  )
 VALUES
   (1, 500000.00, 2024),
   (2, 125000.00, 2024),
   (5, 1500000.00, 2024),
   (6, 25000.00, 2024);
 
--- Inserting into Institute_Accreditation table
-INSERT INTO [dbo].[Institute_Accreditation]
+INSERT INTO
+  [dbo].[Institute_Accreditation]
   ([AccreditationID], [InstituteID])
 VALUES
   (1, 1),
@@ -189,8 +217,8 @@ VALUES
   (4, 7),
   (13, 8);
 
--- Inserting into Courses table
-INSERT INTO [dbo].[Courses]
+INSERT INTO
+  [dbo].[Courses]
   ([CourseName], [InstituteID])
 VALUES
   ('Computer Science', 1),
@@ -204,28 +232,88 @@ VALUES
   ('Mathematics', 9),
   ('Psychology', 10);
 
-
-
-
--- Inserting into Bursary_Applicants table
-INSERT INTO [dbo].[Bursary_Applicants]
-  ([StudentID], [HeadOfDepartmentID], [BursaryAmount], [Motivation], [BursaryApplicantStatus])
+INSERT INTO
+  [dbo].[Bursary_Applicants]
+  (
+  [StudentID],
+  [HeadOfDepartmentID],
+  [BursaryAmount],
+  [Motivation],
+  [BursaryApplicantStatus]
+  )
 VALUES
-  (1, 3, 125000.00, 'Exceptional academic performance demonstrates dedication and potential for future success.', 2),
-  (2, 5, 25000.00, 'Demonstrated leadership skills and active involvement in extracurricular activities showcase initiative and commitment.', 2),
-  (3, 6, 30000.00, 'Overcoming significant challenges highlights resilience and determination to succeed against adversity.', 2),
-  (4, 7, 35000.00, 'Contribution to the community through volunteering reflects a spirit of service and social responsibility.', 1),
-  (6, 9, 20000.00, 'Financial need combined with a strong academic record underscores the students deserving candidacy.', 3),
-  (7, 8, 25000.00, 'Demonstrated passion for their field of study indicates a genuine commitment to personal and professional growth.', 3),
-  (8, 3, 30000.00, 'Positive attitude and eagerness to learn suggest a promising future and a desire to make a meaningful impact.', 2),
-  (9, 2, 35000.00, 'Clear goals and aspirations demonstrate a focused direction and readiness to make the most of educational opportunities.', 1),
-  (10, 1, 40000.00, 'Recommendations from faculty or mentors attest to the students character, work ethic, and potential contributions.', 2);
+  (
+    1,
+    3,
+    125000.00,
+    'Exceptional academic performance demonstrates dedication and potential for future success.',
+    2
+  ),
+  (
+    2,
+    5,
+    25000.00,
+    'Demonstrated leadership skills and active involvement in extracurricular activities showcase initiative and commitment.',
+    2
+  ),
+  (
+    3,
+    6,
+    30000.00,
+    'Overcoming significant challenges highlights resilience and determination to succeed against adversity.',
+    2
+  ),
+  (
+    4,
+    7,
+    35000.00,
+    'Contribution to the community through volunteering reflects a spirit of service and social responsibility.',
+    1
+  ),
+  (
+    6,
+    9,
+    20000.00,
+    'Financial need combined with a strong academic record underscores the students deserving candidacy.',
+    3
+  ),
+  (
+    7,
+    8,
+    25000.00,
+    'Demonstrated passion for their field of study indicates a genuine commitment to personal and professional growth.',
+    3
+  ),
+  (
+    8,
+    3,
+    30000.00,
+    'Positive attitude and eagerness to learn suggest a promising future and a desire to make a meaningful impact.',
+    2
+  ),
+  (
+    9,
+    2,
+    35000.00,
+    'Clear goals and aspirations demonstrate a focused direction and readiness to make the most of educational opportunities.',
+    1
+  ),
+  (
+    10,
+    1,
+    40000.00,
+    'Recommendations from faculty or mentors attest to the students character, work ethic, and potential contributions.',
+    2
+  );
 
-
-
--- Inserting into Bursary_Applicant_Grades table
-INSERT INTO [dbo].[Bursary_Applicant_Grades]
-  ([BursaryApplicantID],[CourseID], [Grade], [BursaryFundID])
+INSERT INTO
+  [dbo].[Bursary_Applicant_Grades]
+  (
+  [BursaryApplicantID],
+  [CourseID],
+  [Grade],
+  [BursaryFundID]
+  )
 VALUES
   (1, 1, 80.5, 2024),
   (2, 1, 90.5, 2024),
