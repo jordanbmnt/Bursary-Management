@@ -17,7 +17,7 @@ jobs:
       - uses: azure/sql-action@v2
         with:
           connection-string: ${{ secrets.AZURE_SQL_CONNECTION_STRING }}
-          path: ".src/db/dbDefinition/createTables.sql"
+          path: "./src/db/dbDefinition/createTables.sql"
       - uses: azure/sql-action@v2
         with:
           connection-string: ${{ secrets.AZURE_SQL_CONNECTION_STRING }}
