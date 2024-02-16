@@ -26,6 +26,5 @@ BEGIN
     )
     ON [StudentID] = [StudentID]
   WHERE B.[BursaryApplicationStudentID] = @InstituteName;
-
   RETURN;
 END;
