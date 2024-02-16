@@ -1,4 +1,4 @@
-package com.bbd.bursary.manager.Model.Students;
+package com.bbd.bursary.manager.Model;
 
 import java.math.BigDecimal;
 
