@@ -1,0 +1,5 @@
+Contains a service/component (Bean)
+
+public List<Student> Class StudentService() {
+
+}

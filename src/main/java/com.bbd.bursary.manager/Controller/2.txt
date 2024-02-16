@@ -1,18 +1,17 @@
+Contains endpoint e.g
+
 import org.springframework.boot.*;
 import org.springframework.boot.autoconfigure.*;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @EnableAutoConfiguration
-public class Example {
+public class ExampleController {
 
         @RequestMapping("/")
         String home() {
+                {Call model}
                 return "Our API is working!";
-        }
-
-        public static void main(String[] args) {
-                SpringApplication.run(Example.class, args);
         }
 
 }
