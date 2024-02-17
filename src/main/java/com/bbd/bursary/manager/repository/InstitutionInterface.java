@@ -3,7 +3,6 @@ package com.bbd.bursary.manager.repository;
 import java.util.List;
 
 public interface InstitutionInterface {
-    List create(Institution institution);
     int save(Institution institution);
 
     int update(Institution institution);
