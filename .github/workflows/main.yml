@@ -26,6 +26,34 @@ jobs:
         with:
           connection-string: ${{ secrets.AZURE_SQL_CONNECTION_STRING }}
           path: "./src/db/dbManipulation/Insert/sqlInsertion.sql"
+      - uses: azure/sql-action@v2
+        with:
+          connection-string: ${{ secrets.AZURE_SQL_CONNECTION_STRING }}
+          path: "./src/db/dbManipulation/Procedures/addStudentProcedure.sql"
+      - uses: azure/sql-action@v2
+        with:
+          connection-string: ${{ secrets.AZURE_SQL_CONNECTION_STRING }}
+          path: "./src/db/dbManipulation/Views/acceptedStudentsView.sql"
+      - uses: azure/sql-action@v2
+        with:
+          connection-string: ${{ secrets.AZURE_SQL_CONNECTION_STRING }}
+          path: "./src/db/dbManipulation/Views/fundedInstitutions.sql"
+      - uses: azure/sql-action@v2
+        with:
+          connection-string: ${{ secrets.AZURE_SQL_CONNECTION_STRING }}
+          path: "./src/db/dbManipulation/Views/pedingInstitutions.sql"
+      - uses: azure/sql-action@v2
+        with:
+          connection-string: ${{ secrets.AZURE_SQL_CONNECTION_STRING }}
+          path: "./src/db/dbManipulation/Views/pendingStudentsView.sql"
+      - uses: azure/sql-action@v2
+        with:
+          connection-string: ${{ secrets.AZURE_SQL_CONNECTION_STRING }}
+          path: "./src/db/dbManipulation/Views/rejectedInstitutions.sql"
+      - uses: azure/sql-action@v2
+        with:
+          connection-string: ${{ secrets.AZURE_SQL_CONNECTION_STRING }}
+          path: "./src/db/dbManipulation/Views/rejectedStudentsView.sql"
 
       # Azure logout
       - name: logout
