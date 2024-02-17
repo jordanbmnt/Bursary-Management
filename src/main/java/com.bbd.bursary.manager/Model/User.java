@@ -1,6 +1,6 @@
 package com.bbd.bursary.manager.Model;
 
-public class User {git branch
+public class User {
     private long userId;
     private int amount;
 
