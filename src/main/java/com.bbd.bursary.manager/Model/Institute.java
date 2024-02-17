@@ -3,14 +3,16 @@ package com.bbd.bursary.manager.Model;
 public class Institute {
     private int instituteId;
     private String instituteName;
-    private int contactDetailsId;
+    private String phoneNumber;
+    private String email;
     private String bbdBursaryInstituteStatus;
 
     // Constructor
-    public Institute(int instituteId, String instituteName, int contactDetailsId, String bbdBursaryInstituteStatus) {
+    public Institute(int instituteId, String instituteName, String phoneNumber, String email, String bbdBursaryInstituteStatus) {
         this.instituteId = instituteId;
         this.instituteName = instituteName;
-        this.contactDetailsId = contactDetailsId;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
         this.bbdBursaryInstituteStatus = bbdBursaryInstituteStatus;
     }
 
@@ -31,12 +33,20 @@ public class Institute {
         this.instituteName = instituteName;
     }
 
-    public int getContactDetailsId() {
-        return contactDetailsId;
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
-    public void setContactDetailsId(int contactDetailsId) {
-        this.contactDetailsId = contactDetailsId;
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getBbdBursaryInstituteStatus() {
