@@ -2,7 +2,7 @@ USE BBD_BursaryDB;
 
 GO
 
-CREATE VIEW RejectedStudents
+CREATE VIEW AcceptedStudents
 AS
   SELECT S.[StudentID], U.[FirstName], U.[LastName], B.[BursaryApplicantStatus]
   FROM [Student] AS S
@@ -12,5 +12,4 @@ AS
     ON S.[StudentID] = B.[StudentID]
     INNER JOIN [Application_Status] AS A
     ON B.[BursaryApplicantStatus] = A.[Index]
-  WHERE A.[Status] = 'rejected';
-  
+  WHERE A.[Status] = 'accepted';
