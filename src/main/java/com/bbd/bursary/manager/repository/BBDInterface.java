@@ -7,7 +7,7 @@ public interface BBDInterface {
 
     int update(BBDAdmin bbdAdmin);
 
-    int deleteById(Long id);
+    int deleteUserById(Long id);
 
     int allocateFunds(long id, int amount);
     List<Institution> findAllInstitutions();
