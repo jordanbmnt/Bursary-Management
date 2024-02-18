@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.bbd.bursary.manager.Model.User;
 import com.bbd.bursary.manager.Repository.BBDInterface;
 
-@CrossOrigin(origins = "http://localhost:8081")
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/api")
 
@@ -30,7 +30,7 @@ public class BBDUserController {
     BBDInterface bbdInterface;
 
 
-    @GetMapping("/institutions")
+    @GetMapping("/institutions/getAll")
     public ResponseEntity<List<User>> getAllInstitutions() {
         try {
             List<User> users = new ArrayList<User>();
@@ -39,9 +39,28 @@ public class BBDUserController {
             if (users.isEmpty()) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             }
+            System.out.println("success");
             return new ResponseEntity<>(users, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PutMapping("/institutions/{id}")
+    public ResponseEntity<String> updateTutorial(@PathVariable("id") long id, @RequestBody User user) {
+        User _user = bbdInterface.findById(id);
+
+        if (_user != null) {
+            _user.setUserId(id);
+            _user.setFirstName(user.getFirstName());
+            _user.setLastName(user.getLastName());
+            _user.setEmail(user.getEmail());
+            _user.setPhoneNumber(user.getPhoneNumber());
+
+            bbdInterface.update(_user);
+            return new ResponseEntity<>("User was updated successfully.", HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("Cannot find user id=", HttpStatus.NOT_FOUND);
         }
     }
 }

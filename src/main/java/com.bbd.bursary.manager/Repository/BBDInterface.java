@@ -7,7 +7,7 @@ public interface BBDInterface {
     int save(User user);
 
     int update(User user);
-
+    User findById(Long id);
     int deleteUserById(Long id);
 
     int allocateFunds(long id, int amount);
