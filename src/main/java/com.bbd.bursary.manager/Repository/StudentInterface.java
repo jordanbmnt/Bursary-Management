@@ -23,4 +23,6 @@ public interface StudentInterface {
     List<Student> getAllApproved();
 
     List<Student> getAllRejected();
+
+    List<Student> getAllPending();
 }

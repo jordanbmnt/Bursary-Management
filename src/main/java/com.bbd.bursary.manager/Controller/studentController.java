@@ -30,6 +30,12 @@ public class studentController {
     return new ResponseEntity<>(students, HttpStatus.OK);
   }
 
+  @GetMapping("/pending")
+  public ResponseEntity<List<Student>> getPendingStudents() {
+    List<Student> students = studentRepository.getAllPending();
+    return new ResponseEntity<>(students, HttpStatus.OK);
+  }
+
   @GetMapping("/rejected")
   public ResponseEntity<List<Student>> getRejectedStudents() {
     List<Student> students = studentRepository.getAllRejected();
