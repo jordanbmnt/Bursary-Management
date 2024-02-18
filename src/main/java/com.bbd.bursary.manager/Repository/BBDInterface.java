@@ -1,11 +1,12 @@
-package com.bbd.bursary.manager.repository;
+package com.bbd.bursary.manager.Repository;
 
 import java.util.List;
 
-public interface BBDInterface {
-    int save(BBDAdmin bbdAdmin);
 
-    int update(BBDAdmin bbdAdmin);
+public interface BBDInterface {
+    int save(User bbdUser);
+
+    int update(User bbdUser);
 
     int deleteUserById(Long id);
 

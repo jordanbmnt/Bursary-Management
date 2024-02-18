@@ -1,4 +1,4 @@
-package com.bbd.bursary.manager.repository;
+package com.bbd.bursary.manager.Repository;
 
 import java.util.List;
 
@@ -12,6 +12,5 @@ public interface StudentInterface {
 
     int deleteById(Long id);
     int allocateFunds(long id, int amount);
-
 
 }
