@@ -2,24 +2,22 @@ CREATE PROCEDURE DeleteBBDUserById
   @UserID INT
 AS
 BEGIN
-
-  IF EXISTS (SELECT 1
-  FROM User_Details
-  WHERE UserID = @UserID)
-    BEGIN
-    DELETE FROM Bursary_Applicants WHERE StudentID = @StudentId;
-  END
-
-  IF EXISTS (SELECT 1
-  FROM Bursary_Applicant_Grades
-  WHERE BursaryApplicantID IN (SELECT BursaryApplicantID
-  FROM Bursary_Applicants
-  WHERE StudentID = @StudentId))
-    BEGIN
-    DELETE FROM Bursary_Applicant_Grades WHERE BursaryApplicantID IN (SELECT BursaryApplicantID
-    FROM Bursary_Applicants
-    WHERE StudentID = @StudentId);
-  END
-
-  DELETE FROM Student WHERE StudentID = @StudentId;
+  BEGIN TRY
+        BEGIN TRANSACTION;
+        
+        DELETE FROM [dbo].[Contact_Details]
+        WHERE ContactDetailsID IN (SELECT ContactDetailsID
+  FROM dbo.User_Details
+  WHERE UserID = @UserID);
+        
+        DELETE FROM [dbo].[User_Details]
+        WHERE UserID = @UserID;
+        
+        COMMIT TRANSACTION;
+    END TRY
+    BEGIN CATCH
+        ROLLBACK TRANSACTION;
+        RAISERROR ('The deletion process failed!',  16,  1);
+    END CATCH
 END;
+GO
