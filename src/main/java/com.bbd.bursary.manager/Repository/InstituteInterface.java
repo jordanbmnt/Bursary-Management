@@ -1,3 +1,4 @@
+/*
 package com.bbd.bursary.manager.Repository;
 
 import java.util.List;
@@ -15,4 +16,4 @@ public interface InstituteInterface {
 
     int getBudget(long id);
 
-}
+}*/
