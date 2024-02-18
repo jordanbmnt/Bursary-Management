@@ -4,7 +4,7 @@ import com.bbd.bursary.manager.Model.Student;
 
 import java.util.List;
 
-public interface StudentInterface {
+public interface StudentInterface  {
 
     int save(Student student);
 
