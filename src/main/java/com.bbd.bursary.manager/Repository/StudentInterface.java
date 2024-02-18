@@ -8,17 +8,17 @@ public interface StudentInterface {
 
     int save(Student student);
 
-    List<Student> getAll();
-
-    List<Student> getAllApproved();
-
     int update(Student student);
 
-    Student findById(Long id);
+    Student findById(Long studentId);
 
     int deleteById(Long id);
 
     int allocateFunds(long id, int amount);
 
     int updateStudentStatus(long id, int statusID);
+
+    List<Student> getAll();
+
+    List<Student> getAllApproved();
 }

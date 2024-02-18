@@ -25,17 +25,6 @@ public class JdbcStudentRepository implements StudentInterface {
   }
 
   @Override
-  public List<Student> getAll() {
-    return jdbcTemplate.query("SELECT * FROM [BBD_BursaryDB].[dbo].[StudentDetails]",
-        BeanPropertyRowMapper.newInstance(Student.class));
-
-  @Override
-  public List<Student> getAllApproved() {
-    return jdbcTemplate.query("SELECT * FROM [BBD_BursaryDB].[dbo].[AcceptedStudents]",
-        BeanPropertyRowMapper.newInstance(Student.class));
-  }
-
-  @Override
   public int update(Student student) {
     return jdbcTemplate.update(
         "EXEC [BBD_BursaryDB].[dbo].[UpdateStudentInfoIfPending] @StudentId =  ?, @FirstName = ?, @LastName = ?, @Email = ?, @PhoneNumber = ?",
@@ -73,4 +62,15 @@ public class JdbcStudentRepository implements StudentInterface {
         statusID, id);
   }
 
+  @Override
+  public List<Student> getAll() {
+    return jdbcTemplate.query("SELECT * FROM [BBD_BursaryDB].[dbo].[StudentDetails]",
+        BeanPropertyRowMapper.newInstance(Student.class));
+  }
+
+  @Override
+  public List<Student> getAllApproved() {
+    return jdbcTemplate.query("SELECT * FROM [BBD_BursaryDB].[dbo].[AcceptedStudents]",
+        BeanPropertyRowMapper.newInstance(Student.class));
+  }
 }

@@ -18,32 +18,21 @@ public class studentController {
   @Autowired
   StudentInterface studentRepository;
 
-  @GetMapping("/student")
-  public ResponseEntity<Student> getStudents() {
-    List<Student> student = studentRepository.getAll();
-
-    if (student != null) {
-      return new ResponseEntity<>(student, HttpStatus.OK);
-    } else {
-      return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-    }
+  @GetMapping
+  public ResponseEntity<List<Student>> getStudents() {
+    List<Student> students = studentRepository.getAll();
+    return new ResponseEntity<>(students, HttpStatus.OK);
   }
 
-  @GetMapping("/student/approved")
-  public ResponseEntity<Student> getStudents() {
-    List<Student> student = studentRepository.getAllApproved();
-
-    if (student != null) {
-      return new ResponseEntity<>(student, HttpStatus.OK);
-    } else {
-      return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-    }
+  @GetMapping("/approved")
+  public ResponseEntity<List<Student>> getApprovedStudents() {
+    List<Student> students = studentRepository.getAllApproved();
+    return new ResponseEntity<>(students, HttpStatus.OK);
   }
 
-  @GetMapping("/student/{id}")
+  @GetMapping("/{id}")
   public ResponseEntity<Student> getStudentById(@PathVariable("id") long id) {
     Student student = studentRepository.findById(id);
-
     if (student != null) {
       return new ResponseEntity<>(student, HttpStatus.OK);
     } else {
@@ -51,12 +40,10 @@ public class studentController {
     }
   }
 
-  @PostMapping("/student")
+  @PostMapping
   public ResponseEntity<String> createStudent(@RequestBody Student student) {
     try {
-      studentRepository.save(new Student(student.getStudentId(), student.getFirstName(), student.getLastName(), student.getIdentityDocument(), student.getPhoneNumber(), student.getEmail(),
-      student.getRace(), student.getHeadOfDepartmentID(),
-      student.getMotivation()));
+      studentRepository.save(student);
       return new ResponseEntity<>("Student was created successfully.", HttpStatus.CREATED);
     } catch (Exception e) {
       return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -73,17 +60,16 @@ public class studentController {
     }
   }
 
-   @DeleteMapping("/student/{id}")
-   public ResponseEntity<String> deleteStudent(@PathVariable("id") long id) {
-     try {
-       int result = studentRepository.deleteById(id);
-       if (result == 0) {
-         return new ResponseEntity<>("Cannot find Student with id=" + id, HttpStatus.OK);
-       }
-       return new ResponseEntity<>("Student was deleted successfully.", HttpStatus.OK);
-     } catch (Exception e) {
-       return new ResponseEntity<>("Cannot delete Student.", HttpStatus.INTERNAL_SERVER_ERROR);
-     }
-   }
-
+  @DeleteMapping("/{id}")
+  public ResponseEntity<String> deleteStudent(@PathVariable("id") long id) {
+    try {
+      int result = studentRepository.deleteById(id);
+      if (result ==  0) {
+        return new ResponseEntity<>("Cannot find Student with id=" + id, HttpStatus.NOT_FOUND);
+      }
+      return new ResponseEntity<>("Student was deleted successfully.", HttpStatus.OK);
+    } catch (Exception e) {
+      return new ResponseEntity<>("Cannot delete Student.", HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
 }
