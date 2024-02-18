@@ -1,3 +1,6 @@
+USE BBD_BursaryDB;
+
+GO
 CREATE PROCEDURE dbo.InsertInstitution
   @InstituteName VARCHAR(100),
   @PhoneNumber VARCHAR(12),

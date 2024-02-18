@@ -11,13 +11,16 @@ public class JdbcInstituteRepository implements InstituteInterface {
     private JdbcTemplate jdbcTemplate;
 
     public int save(Institute institute) {
-        return jdbcTemplate.update("INSERT INTO Institute_Info (InstituteName, ContactDetailsID, BBDBursaryInstituteStatus) VALUES (?,?,?)",
+        return jdbcTemplate.update("EXEC [BBD_BursaryDB].[dbo].[InsertInstitution] @InstituteName = ?, @PhoneNumber = ?, @Email = ?, @BBDBursaryInstituteStatus = ?;",
                 new Object[] {
-                        institute.getInstituteName()
+                        institute.getInstituteName(),
+                        institute.getPhoneNumber(),
+                        institute.getEmail(),
+                        institute.getBbdBursaryInstituteStatus()
                 });
     }
 
-    public int updateFundAllocation(Institute institute) {
+    public int updateFunds(Institute institute) {
         return jdbcTemplate.update("UPDATE Institution_fund_allocation SET AllocatedAmount = ? WHERE InstituteId=?",
                 new Object[] {institute.setAllocatedAmount()}
                 );
