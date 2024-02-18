@@ -25,7 +25,7 @@ public class studentController {
   StudentInterface studentRepository;
 
   @GetMapping("/student/{id}")
-  public ResponseEntity<Student> getTutorialById(@PathVariable("id") long id) {
+  public ResponseEntity<Student> getStudentById(@PathVariable("id") long id) {
     Student student = studentRepository.findById(id);
 
     if (student != null) {
@@ -63,9 +63,9 @@ public class studentController {
       _student.setRace(student.getRace());
 
       studentRepository.update(_student);
-      return new ResponseEntity<>("Tutorial was updated successfully.", HttpStatus.OK);
+      return new ResponseEntity<>("Student was updated successfully.", HttpStatus.OK);
     } else {
-      return new ResponseEntity<>("Cannot find Tutorial with id=" + id, HttpStatus.NOT_FOUND);
+      return new ResponseEntity<>("Cannot find Student with id=" + id, HttpStatus.NOT_FOUND);
     }
   }
 
@@ -74,26 +74,12 @@ public class studentController {
      try {
        int result = studentRepository.deleteById(id);
        if (result == 0) {
-         return new ResponseEntity<>("Cannot find Tutorial with id=" + id, HttpStatus.OK);
+         return new ResponseEntity<>("Cannot find Student with id=" + id, HttpStatus.OK);
        }
-       return new ResponseEntity<>("Tutorial was deleted successfully.", HttpStatus.OK);
+       return new ResponseEntity<>("Student was deleted successfully.", HttpStatus.OK);
      } catch (Exception e) {
-       return new ResponseEntity<>("Cannot delete tutorial.", HttpStatus.INTERNAL_SERVER_ERROR);
+       return new ResponseEntity<>("Cannot delete Student.", HttpStatus.INTERNAL_SERVER_ERROR);
      }
    }
-
-  // @GetMapping("/student/published")
-  // public ResponseEntity<List<Tutorial>> findByPublished() {
-  //   try {
-  //     List<Tutorial> tutorials = tutorialRepository.findByPublished(true);
-
-  //     if (tutorials.isEmpty()) {
-  //       return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-  //     }
-  //     return new ResponseEntity<>(tutorials, HttpStatus.OK);
-  //   } catch (Exception e) {
-  //     return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-  //   }
-  // }
 
 }
