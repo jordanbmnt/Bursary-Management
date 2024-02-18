@@ -6,14 +6,16 @@ public class Institute {
     private String phoneNumber;
     private String email;
     private String bbdBursaryInstituteStatus;
+    private double allocatedAmount;
 
     // Constructor
-    public Institute(int instituteId, String instituteName, String phoneNumber, String email, String bbdBursaryInstituteStatus) {
+    public Institute(int instituteId, String instituteName, String phoneNumber, String email, String bbdBursaryInstituteStatus, double allocatedAmount) {
         this.instituteId = instituteId;
         this.instituteName = instituteName;
         this.phoneNumber = phoneNumber;
         this.email = email;
         this.bbdBursaryInstituteStatus = bbdBursaryInstituteStatus;
+        this.allocatedAmount = allocatedAmount;
     }
 
     // Getters and setters
@@ -55,5 +57,13 @@ public class Institute {
 
     public void setBbdBursaryInstituteStatus(String bbdBursaryInstituteStatus) {
         this.bbdBursaryInstituteStatus = bbdBursaryInstituteStatus;
+    }
+
+    public double getAllocatedAmount() {
+        return allocatedAmount;
+    }
+
+    public void setAllocatedAmount(double allocatedAmount) {
+        this.allocatedAmount = allocatedAmount;
     }
 }
