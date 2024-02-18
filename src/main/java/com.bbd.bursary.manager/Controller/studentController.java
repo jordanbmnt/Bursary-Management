@@ -50,4 +50,45 @@ public class StudentController {
     }
   }
 
+//  @PutMapping("/student")
+//  public ResponseEntity<String> updateStudent(@RequestBody Student student) {
+//    Tutorial _student = studentRepository.update(student.getStudentId(), student.getFirstName(), student.getLastName(), student.getEmail(), student.getPhoneNumber());
+//
+//    if (_student != null) {
+//      _student.getStudentId(student.getStudentId);
+//
+//      studentRepository.update(_student);
+//      return new ResponseEntity<>("Tutorial was updated successfully.", HttpStatus.OK);
+//    } else {
+//      return new ResponseEntity<>("Cannot find Tutorial with id=" + id, HttpStatus.NOT_FOUND);
+//    }
+//  }
+
+   @DeleteMapping("/student/{id}")
+   public ResponseEntity<String> deleteStudent(@PathVariable("id") long id) {
+     try {
+       int result = studentRepository.deleteById(id);
+       if (result == 0) {
+         return new ResponseEntity<>("Cannot find Tutorial with id=" + id, HttpStatus.OK);
+       }
+       return new ResponseEntity<>("Tutorial was deleted successfully.", HttpStatus.OK);
+     } catch (Exception e) {
+       return new ResponseEntity<>("Cannot delete tutorial.", HttpStatus.INTERNAL_SERVER_ERROR);
+     }
+   }
+
+  // @GetMapping("/student/published")
+  // public ResponseEntity<List<Tutorial>> findByPublished() {
+  //   try {
+  //     List<Tutorial> tutorials = tutorialRepository.findByPublished(true);
+
+  //     if (tutorials.isEmpty()) {
+  //       return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+  //     }
+  //     return new ResponseEntity<>(tutorials, HttpStatus.OK);
+  //   } catch (Exception e) {
+  //     return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+  //   }
+  // }
+
 }
