@@ -20,15 +20,8 @@ public class JdbcInstituteRepository implements InstituteInterface {
                 });
     }
 
-    public int updateFunds(Institute institute) {
-        return jdbcTemplate.update("EXEC [BBD_BursaryDB].[dbo].[InsertInstitution]  @InstituteID = ?, @InstituteName = ?, @PhoneNumber = ?, @Email = ?, @BBDBursaryInstituteStatus = ?",
-                new Object[]{
-                        institute.getInstituteId(),
-                        institute.getInstituteName(),
-                        institute.getPhoneNumber(),
-                        institute.getEmail(),
-                        institute.getBbdBursaryInstituteStatus()
-                });
+    public int updateFunds(int id, double amount) {
+        return jdbcTemplate.update("EXEC [BBD_BursaryDB].[dbo].[InsertInstitution]  @InstituteID = ?, @InstituteName = ?, @PhoneNumber = ?, @Email = ?, @BBDBursaryInstituteStatus = ?", id, amount);
     }
 
     public int updateStatus(Institute institute) {
