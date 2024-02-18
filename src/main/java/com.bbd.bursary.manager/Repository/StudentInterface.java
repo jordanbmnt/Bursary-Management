@@ -1,4 +1,5 @@
 package com.bbd.bursary.manager.Repository;
+
 import com.bbd.bursary.manager.Model.Student;
 
 import java.util.List;
@@ -6,6 +7,8 @@ import java.util.List;
 public interface StudentInterface {
 
     int save(Student student);
+
+    List<Student> getAll();
 
     int update(Student student);
 

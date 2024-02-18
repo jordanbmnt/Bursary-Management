@@ -7,6 +7,8 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public class JdbcStudentRepository implements StudentInterface {
 
@@ -23,12 +25,20 @@ public class JdbcStudentRepository implements StudentInterface {
   }
 
   @Override
-  public int update(Student student) {
-    return jdbcTemplate.update("EXEC [BBD_BursaryDB].[dbo].[UpdateStudentInfoIfPending] @StudentId =  ?, @FirstName = ?, @LastName = ?, @Email = ?, @PhoneNumber = ?",
-        new Object[] { student.getStudentId(), student.getFirstName(), student.getLastName(), student.getEmail(), student.getPhoneNumber() });
+  public List<Student> getAll() {
+    return jdbcTemplate.query("SELECT * FROM [BBD_BursaryDB].[dbo].[StudentDetails]",
+        BeanPropertyRowMapper.newInstance(Student.class));
   }
 
-    @Override
+  @Override
+  public int update(Student student) {
+    return jdbcTemplate.update(
+        "EXEC [BBD_BursaryDB].[dbo].[UpdateStudentInfoIfPending] @StudentId =  ?, @FirstName = ?, @LastName = ?, @Email = ?, @PhoneNumber = ?",
+        new Object[] { student.getStudentId(), student.getFirstName(), student.getLastName(), student.getEmail(),
+            student.getPhoneNumber() });
+  }
+
+  @Override
   public Student findById(Long id) {
     try {
       return jdbcTemplate.queryForObject(
