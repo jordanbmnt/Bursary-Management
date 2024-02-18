@@ -10,6 +10,8 @@ public interface StudentInterface {
 
     List<Student> getAll();
 
+    List<Student> getAllApproved();
+
     int update(Student student);
 
     Student findById(Long id);

@@ -28,6 +28,11 @@ public class JdbcStudentRepository implements StudentInterface {
   public List<Student> getAll() {
     return jdbcTemplate.query("SELECT * FROM [BBD_BursaryDB].[dbo].[StudentDetails]",
         BeanPropertyRowMapper.newInstance(Student.class));
+
+  @Override
+  public List<Student> getAllApproved() {
+    return jdbcTemplate.query("SELECT * FROM [BBD_BursaryDB].[dbo].[AcceptedStudents]",
+        BeanPropertyRowMapper.newInstance(Student.class));
   }
 
   @Override

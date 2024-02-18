@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.*;
 
 import com.bbd.bursary.manager.Repository.StudentInterface;
 
+import java.util.List;
+
 @CrossOrigin(origins = "http://localhost:8081")
 @RestController
 @RequestMapping("/student")
@@ -18,7 +20,18 @@ public class studentController {
 
   @GetMapping("/student")
   public ResponseEntity<Student> getStudents() {
-    Student student = studentRepository.getAll();
+    List<Student> student = studentRepository.getAll();
+
+    if (student != null) {
+      return new ResponseEntity<>(student, HttpStatus.OK);
+    } else {
+      return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+  }
+
+  @GetMapping("/student/approved")
+  public ResponseEntity<Student> getStudents() {
+    List<Student> student = studentRepository.getAllApproved();
 
     if (student != null) {
       return new ResponseEntity<>(student, HttpStatus.OK);
