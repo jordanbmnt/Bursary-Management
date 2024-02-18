@@ -19,21 +19,18 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.bbd.bursary.manager.Model.User;
 import com.bbd.bursary.manager.Repository.BBDInterface;
-
 @CrossOrigin(origins = "http://localhost:8081")
 @RestController
 @RequestMapping("/api")
-
-
 public class BBDUserController {
     @Autowired
     BBDInterface bbdInterface;
 
-
+    // Get all institutions
     @GetMapping("/institutions")
     public ResponseEntity<List<User>> getAllInstitutions() {
         try {
-            List<User> users = new ArrayList<User>();
+            List<User> users = new ArrayList<>();
 
             bbdInterface.findAllInstitutions().forEach(users::add);
             if (users.isEmpty()) {
@@ -42,6 +39,29 @@ public class BBDUserController {
             return new ResponseEntity<>(users, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PostMapping("/user")
+    public ResponseEntity<User> saveUser(@RequestBody User user) {
+        try {
+            Long savedUserId = (long) bbdInterface.save(user); // Convert int to Long
+            User savedUser = bbdInterface.getUserById(savedUserId);
+
+            return new ResponseEntity<>(savedUser, HttpStatus.CREATED);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    // Delete a user by UserID
+    @DeleteMapping("/user/{userId}")
+    public ResponseEntity<HttpStatus> deleteUserByUserId(@PathVariable("userId") Long userId) {
+        try {
+            bbdInterface.deleteById(userId);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 }

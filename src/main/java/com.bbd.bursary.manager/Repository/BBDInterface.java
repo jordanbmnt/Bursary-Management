@@ -11,5 +11,10 @@ public interface BBDInterface {
     int deleteUserById(Long id);
 
     int allocateFunds(long id, int amount);
+
     List<User> findAllInstitutions();
+
+    // New method to delete by ID
+    int deleteById(Long id);
+    User getUserById(Long id);
 }
