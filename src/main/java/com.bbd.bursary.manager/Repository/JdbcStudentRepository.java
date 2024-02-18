@@ -1,7 +1,5 @@
 package com.bbd.bursary.manager.Repository;
 
-import java.util.List;
-
 import com.bbd.bursary.manager.Model.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.IncorrectResultSizeDataAccessException;
@@ -28,9 +26,9 @@ public class JdbcStudentRepository implements StudentInterface {
   public int update(Student student) {
     return jdbcTemplate.update("EXEC [BBD_BursaryDB].[dbo].[UpdateStudentInfoIfPending] @StudentId =  ?, @FirstName = ?, @LastName = ?, @Email = ?, @PhoneNumber = ?",
         new Object[] { student.getStudentId(), student.getFirstName(), student.getLastName(), student.getEmail(), student.getPhoneNumber() });
-  };
+  }
 
-  @Override
+    @Override
   public Student findById(Long id) {
     try {
       return jdbcTemplate.queryForObject(
@@ -39,18 +37,18 @@ public class JdbcStudentRepository implements StudentInterface {
     } catch (IncorrectResultSizeDataAccessException e) {
       return null;
     }
-  };
+  }
 
   @Override
   public int deleteById(Long id) {
     return jdbcTemplate.update("EXEC [BBD_BursaryDB].[dbo].[DeleteStudentById] @StudentId=?", id);
-  };
+  }
 
   @Override
   public int allocateFunds(long id, int amount) {
     return jdbcTemplate.update(
         "UPDATE [BBD_BursaryDB].[dbo].[Bursary_Applicants] SET BursaryAmount=? WHERE StudentID=?",
         amount, id);
-  };
+  }
 
 }

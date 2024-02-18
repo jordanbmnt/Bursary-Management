@@ -47,25 +47,25 @@ public class studentController {
     }
   }
 
-  @PutMapping("/student/{id}")
-  public ResponseEntity<String> updateStudent(@PathVariable("id") long id, @RequestBody Student student) {
-    Student _student = studentRepository.findById(id);
+  @PutMapping("/student/allocateFunds/{id}")
+  public ResponseEntity<String> createStudent(@RequestBody Student student) {
+    try {
+      studentRepository.save(new Student(student.getStudentId(), student.getFirstName(), student.getLastName(), student.getIdentityDocument(), student.getPhoneNumber(), student.getEmail(),
+      student.getRace(), student.getHeadOfDepartmentID(),
+      student.getMotivation()));
+      return new ResponseEntity<>("Student was created successfully.", HttpStatus.CREATED);
+    } catch (Exception e) {
+      return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
 
-    if (_student != null) {
-      _student.setStudentId(id);
-      _student.setFirstName(student.getFirstName());
-      _student.setLastName(student.getLastName());
-      _student.setPhoneNumber(student.getPhoneNumber());
-      _student.setIdentityDocument(student.getIdentityDocument());
-      _student.setHeadOfDepartmentID(student.getHeadOfDepartmentID());
-      _student.setMotivation(student.getMotivation());
-      _student.setEmail(student.getEmail());
-      _student.setRace(student.getRace());
-
-      studentRepository.update(_student);
-      return new ResponseEntity<>("Student was updated successfully.", HttpStatus.OK);
+  @PutMapping("/{id}/fund")
+  public ResponseEntity<String> allocateFunds(@PathVariable("id") long id, @RequestParam("amount") int amount) {
+    int rowsAffected = studentRepository.updateFund(id, amount);
+    if (rowsAffected >  0) {
+      return new ResponseEntity<>("Funds allocated successfully.", HttpStatus.OK);
     } else {
-      return new ResponseEntity<>("Cannot find Student with id=" + id, HttpStatus.NOT_FOUND);
+      return new ResponseEntity<>("No student found with id=" + id, HttpStatus.NOT_FOUND);
     }
   }
 
