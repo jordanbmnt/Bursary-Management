@@ -73,4 +73,11 @@ public class JdbcStudentRepository implements StudentInterface {
     return jdbcTemplate.query("SELECT * FROM [BBD_BursaryDB].[dbo].[AcceptedStudents]",
         BeanPropertyRowMapper.newInstance(Student.class));
   }
+
+
+  @Override
+  public List<Student> getAllRejected() {
+    return jdbcTemplate.query("SELECT * FROM [BBD_BursaryDB].[dbo].[RejectedStudents]",
+            BeanPropertyRowMapper.newInstance(Student.class));
+  }
 }

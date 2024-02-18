@@ -30,6 +30,12 @@ public class studentController {
     return new ResponseEntity<>(students, HttpStatus.OK);
   }
 
+  @GetMapping("/rejected")
+  public ResponseEntity<List<Student>> getRejectedStudents() {
+    List<Student> students = studentRepository.getAllRejected();
+    return new ResponseEntity<>(students, HttpStatus.OK);
+  }
+
   @GetMapping("/{id}")
   public ResponseEntity<Student> getStudentById(@PathVariable("id") long id) {
     Student student = studentRepository.findById(id);

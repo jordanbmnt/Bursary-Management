@@ -21,4 +21,6 @@ public interface StudentInterface {
     List<Student> getAll();
 
     List<Student> getAllApproved();
+
+    List<Student> getAllRejected();
 }
