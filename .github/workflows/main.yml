@@ -33,6 +33,14 @@ jobs:
       - uses: azure/sql-action@v2
         with:
           connection-string: ${{ secrets.AZURE_SQL_CONNECTION_STRING }}
+          path: "./src/db/dbManipulation/Procedures/deleteStudentByIDProcedure.sql"
+      - uses: azure/sql-action@v2
+        with:
+          connection-string: ${{ secrets.AZURE_SQL_CONNECTION_STRING }}
+          path: "./src/db/dbManipulation/Procedures/updateStudent.sql"
+      - uses: azure/sql-action@v2
+        with:
+          connection-string: ${{ secrets.AZURE_SQL_CONNECTION_STRING }}
           path: "./src/db/dbManipulation/Views/acceptedStudentsView.sql"
       - uses: azure/sql-action@v2
         with:
@@ -54,6 +62,10 @@ jobs:
         with:
           connection-string: ${{ secrets.AZURE_SQL_CONNECTION_STRING }}
           path: "./src/db/dbManipulation/Views/rejectedStudentsView.sql"
+      - uses: azure/sql-action@v2
+        with:
+          connection-string: ${{ secrets.AZURE_SQL_CONNECTION_STRING }}
+          path: "./src/db/dbManipulation/Views/viewAllStudents.sql"
       - uses: azure/sql-action@v2
         with:
           connection-string: ${{ secrets.AZURE_SQL_CONNECTION_STRING }}

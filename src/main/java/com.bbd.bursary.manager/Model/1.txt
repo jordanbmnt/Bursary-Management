@@ -1,4 +1,0 @@
-Contains a mode
-e.g
-
-Class Student
