@@ -1,6 +1,4 @@
 package com.bbd.bursary.manager.Controller;
-import java.util.ArrayList;
-import java.util.List;
 
 import com.bbd.bursary.manager.Model.Student;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +12,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.bbd.bursary.manager.Repository.StudentInterface;
@@ -22,13 +19,13 @@ import com.bbd.bursary.manager.Repository.StudentInterface;
 @CrossOrigin(origins = "http://localhost:8081")
 @RestController
 @RequestMapping("/student")
-public class StudentController {
+public class studentController {
 
   @Autowired
   StudentInterface studentRepository;
 
   @GetMapping("/student/{id}")
-  public ResponseEntity<Tutorial> getTutorialById(@PathVariable("id") long id) {
+  public ResponseEntity<Student> getTutorialById(@PathVariable("id") long id) {
     Student student = studentRepository.findById(id);
 
     if (student != null) {
@@ -50,19 +47,27 @@ public class StudentController {
     }
   }
 
-//  @PutMapping("/student")
-//  public ResponseEntity<String> updateStudent(@RequestBody Student student) {
-//    Tutorial _student = studentRepository.update(student.getStudentId(), student.getFirstName(), student.getLastName(), student.getEmail(), student.getPhoneNumber());
-//
-//    if (_student != null) {
-//      _student.getStudentId(student.getStudentId);
-//
-//      studentRepository.update(_student);
-//      return new ResponseEntity<>("Tutorial was updated successfully.", HttpStatus.OK);
-//    } else {
-//      return new ResponseEntity<>("Cannot find Tutorial with id=" + id, HttpStatus.NOT_FOUND);
-//    }
-//  }
+  @PutMapping("/student/{id}")
+  public ResponseEntity<String> updateStudent(@PathVariable("id") long id, @RequestBody Student student) {
+    Student _student = studentRepository.findById(id);
+
+    if (_student != null) {
+      _student.setStudentId(id);
+      _student.setFirstName(student.getFirstName());
+      _student.setLastName(student.getLastName());
+      _student.setPhoneNumber(student.getPhoneNumber());
+      _student.setIdentityDocument(student.getIdentityDocument());
+      _student.setHeadOfDepartmentID(student.getHeadOfDepartmentID());
+      _student.setMotivation(student.getMotivation());
+      _student.setEmail(student.getEmail());
+      _student.setRace(student.getRace());
+
+      studentRepository.update(_student);
+      return new ResponseEntity<>("Tutorial was updated successfully.", HttpStatus.OK);
+    } else {
+      return new ResponseEntity<>("Cannot find Tutorial with id=" + id, HttpStatus.NOT_FOUND);
+    }
+  }
 
    @DeleteMapping("/student/{id}")
    public ResponseEntity<String> deleteStudent(@PathVariable("id") long id) {
