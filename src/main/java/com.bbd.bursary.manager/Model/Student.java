@@ -2,7 +2,8 @@ package com.bbd.bursary.manager.Model;
 
 public class Student {
     private long studentId;
-
+    private String firstName;
+    private String lastName;
     private int identityDocument;
     private String phoneNumber;
     private String email;
