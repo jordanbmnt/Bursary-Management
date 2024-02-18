@@ -27,6 +27,17 @@ public class StudentController {
   @Autowired
   StudentInterface studentRepository;
 
+  @GetMapping("/student/{id}")
+  public ResponseEntity<Tutorial> getTutorialById(@PathVariable("id") long id) {
+    Student student = studentRepository.findById(id);
+
+    if (student != null) {
+      return new ResponseEntity<>(student, HttpStatus.OK);
+    } else {
+      return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+  }
+
   @PostMapping("/student")
   public ResponseEntity<String> createStudent(@RequestBody Student student) {
     try {
