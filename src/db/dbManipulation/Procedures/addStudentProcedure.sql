@@ -35,7 +35,7 @@ BEGIN
     [RoleID]
     )
   VALUES
-    (@FirstName, @LastName, @NewContactDetailsID, 2);
+    (@FirstName, @LastName, @NewContactDetailsID, 3);
 
   DECLARE @NewUserID INT;
 
