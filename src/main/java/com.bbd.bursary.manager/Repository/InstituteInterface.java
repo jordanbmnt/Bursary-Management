@@ -6,7 +6,7 @@ public interface InstituteInterface {
     int save(Institute institute);
 
     int update(Institute institute);
-    
+
     Institute findById(Long id);
 
     int deleteById(Long id);
