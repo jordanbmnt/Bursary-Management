@@ -1,0 +1,2 @@
+CREATE PROCEDURE DeleteBBDUserById
+  @UserID INT
