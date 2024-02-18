@@ -42,14 +42,13 @@ public class JdbcStudentRepository implements StudentInterface {
 
   @Override
   public int deleteById(Long id) {
-    return 0;
-  }
+    return jdbcTemplate.update("EXEC [BBD_BursaryDB].[dbo].[DeleteStudentById] @StudentId=?", id);
+  };
 
   @Override
   public int allocateFunds(long id, int amount) {
     return jdbcTemplate.update(
-        "UPDATE [BBD_BursaryDB].[dbo].[Bursary_Applicants] SET BursaryAmount=? WHERE StudentID=?",
-        new Object[] { student.getId() });
+        "UPDATE [BBD_BursaryDB].[dbo].[Bursary_Applicants] SET BursaryAmount=? WHERE StudentID=?", id, amount);
   };
 
 }
