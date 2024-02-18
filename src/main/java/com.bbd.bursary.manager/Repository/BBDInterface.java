@@ -1,5 +1,7 @@
 package com.bbd.bursary.manager.Repository;
 
+import com.bbd.bursary.manager.Model.User;
+
 import java.util.List;
 
 
@@ -11,5 +13,5 @@ public interface BBDInterface {
     int deleteUserById(Long id);
 
     int allocateFunds(long id, int amount);
-    List<Institution> findAllInstitutions();
+//    List<Institution> findAllInstitutions();
 }

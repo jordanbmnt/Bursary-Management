@@ -17,14 +17,17 @@ public class JdbcInstituteRepository implements InstituteInterface {
                         institute.getInstituteName(),
                         institute.getPhoneNumber(),
                         institute.getEmail(),
-                        institute.getBbdBursaryInstituteStatus()
+                        institute.getBbdBursaryInstituteStatus(),
+                        institute.getAllocatedAmount()
                 });
     }
 
+    @Override
     public int updateFunds(int id, double amount) {
         return jdbcTemplate.update("EXEC [BBD_BursaryDB].[dbo].[InsertInstitution]  @InstituteID = ?, @InstituteName = ?, @PhoneNumber = ?, @Email = ?, @BBDBursaryInstituteStatus = ?", id, amount);
     }
 
+    @Override
     public int updateStatus(int id, String status) {
         return jdbcTemplate.update("UPDATE Institute_info SET BBDBursaryInstituteStatus = ? WHERE InstituteID = ?", id, status);
     }
