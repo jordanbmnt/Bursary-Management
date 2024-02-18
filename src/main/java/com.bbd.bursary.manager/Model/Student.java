@@ -2,18 +2,26 @@ package com.bbd.bursary.manager.Model;
 
 public class Student {
     private long studentId;
-    private long userId;
+    private String firstName;
+    private String lastName;
     private int identityDocument;
     private String phoneNumber;
     private String email;
+    private int race;
+    private int headOfDepartmentID;
+    private String motivation;
 
     // Constructor
-    public Student(long studentId, long userId, int identityDocument, String phoneNumber, String email) {
+    public Student(long studentId, String firstName, String lastName, int identityDocument, String phoneNumber, String email, int race, int headOfDepartmentID, String motivation) {
         this.studentId = studentId;
-        this.userId = userId;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.identityDocument = identityDocument;
         this.phoneNumber = phoneNumber;
         this.email = email;
+        this.race = race;
+        this.headOfDepartmentID = headOfDepartmentID;
+        this.motivation = motivation;
     }
 
     // Getters and setters
@@ -25,12 +33,20 @@ public class Student {
         this.studentId = studentId;
     }
 
-    public long getUserId() {
-        return userId;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setUserId(long userId) {
-        this.userId = userId;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public int getIdentityDocument() {
@@ -55,6 +71,30 @@ public class Student {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public int getRace() {
+        return race;
+    }
+
+    public void setRace(int race) {
+        this.race = race;
+    }
+
+    public int getHeadOfDepartmentID() {
+        return headOfDepartmentID;
+    }
+
+    public void setHeadOfDepartmentID(int headOfDepartmentID) {
+        this.headOfDepartmentID = headOfDepartmentID;
+    }
+
+    public String getMotivation() {
+        return motivation;
+    }
+
+    public void setMotivation(String motivation) {
+        this.motivation = motivation;
     }
 }
 
