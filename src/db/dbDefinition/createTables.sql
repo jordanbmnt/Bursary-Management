@@ -91,7 +91,7 @@ CREATE TABLE [dbo].[Institution_Fund_Allocation]
 (
   [InstituteID] INT NOT NULL,
   [AllocatedAmount] MONEY NOT NULL,
-  [BursaryFundID] INT NOT NULL,
+  [BursaryFundID] INT NOT NULL DEFAULT 0,
 );
  
 GO
