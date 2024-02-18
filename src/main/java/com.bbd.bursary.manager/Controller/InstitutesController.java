@@ -31,7 +31,18 @@ public class InstitutesController {
             if(rowsAffected > 0) {
                 return new ResponseEntity<>("Funds allocated successfully", HttpStatus.OK);
             } else {
-                return new ResponseEntity<>("No student found with id=" + id, HttpStatus.NOT_FOUND);
+                return new ResponseEntity<>("No student found with id=" + instituteId, HttpStatus.NOT_FOUND);
             }
+    }
+
+    @PutMapping("/institute/{id}")
+    public ResponseEntity<String> updateInstitutePendingStatus(@PathVariable("id") int instituteId, @RequestParam("instituteId") String status) {
+
+        int rowsAffected = jdbcInstituteRepository.updateStatus(instituteId, status);
+        if(rowsAffected > 0) {
+            return new ResponseEntity<>("Status updated successfully", HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("No institute found with id=" + instituteId, HttpStatus.NOT_FOUND);
+        }
     }
 }

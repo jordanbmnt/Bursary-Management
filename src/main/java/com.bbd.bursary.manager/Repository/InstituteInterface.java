@@ -1,5 +1,7 @@
 package com.bbd.bursary.manager.Repository;
 
+import com.bbd.bursary.manager.Model.Institute;
+
 import java.util.List;
 
 public interface InstituteInterface {
@@ -7,12 +9,11 @@ public interface InstituteInterface {
 
     int update(Institute institute);
 
-    Institute findById(Long id);
+    int updateFunds(int id, double amount);
+
+    int updateStatus(int id, String status);
+
+    Institute findById(Long instituteId);
 
     int deleteById(Long id);
-
-    List<Institute > findAllStudents();
-
-    int getBudget(long id);
-
 }
