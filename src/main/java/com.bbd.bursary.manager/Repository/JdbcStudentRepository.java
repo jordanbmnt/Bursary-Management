@@ -26,8 +26,9 @@ public class JdbcStudentRepository implements StudentInterface {
 
   @Override
   public int update(Student student) {
-    return 0;
-  }
+    return jdbcTemplate.update("EXEC [BBD_BursaryDB].[dbo].[UpdateStudentInfoIfPending] @StudentId =  ?, @FirstName = ?, @LastName = ?, @Email = ?, @PhoneNumber = ?",
+        new Object[] { student.getStudentId(), student.getFirstName(), student.getLastName(), student.getEmail(), student.getPhoneNumber() });
+  };
 
   @Override
   public Student findById(Long id) {
