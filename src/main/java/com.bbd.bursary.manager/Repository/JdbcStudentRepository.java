@@ -31,8 +31,14 @@ public class JdbcStudentRepository implements StudentInterface {
 
   @Override
   public Student findById(Long id) {
-    return null;
-  }
+    try {
+      return jdbcTemplate.queryForObject(
+          "SELECT * FROM [BBD_BursaryDB].[dbo].[StudentDetails] WHERE StudentId=?",
+          BeanPropertyRowMapper.newInstance(Student.class), id);
+    } catch (IncorrectResultSizeDataAccessException e) {
+      return null;
+    }
+  };
 
   @Override
   public int deleteById(Long id) {
