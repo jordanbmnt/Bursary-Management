@@ -18,13 +18,13 @@ public class JdbcInstituteRepository implements InstituteInterface {
     }
 
     public int updateFundAllocation(Institute institute) {
-        return jdbcTemplate.update("UPDATE Institution_fund_allocation SET AllocatedAmount WHERE InstituteId=?",
+        return jdbcTemplate.update("UPDATE Institution_fund_allocation SET AllocatedAmount = ? WHERE InstituteId=?",
                 new Object[] {institute.setAllocatedAmount()}
                 );
     }
 
     public int updateStatus(Institute institute) {
-        return jdbcTemplate.update("UPDATE Institute_info SET BBDBursaryInstituteStatus WHERE InstituteID = ?",
+        return jdbcTemplate.update("UPDATE Institute_info SET BBDBursaryInstituteStatus = ? WHERE InstituteID = ?",
                 new Object[] { institute.getBbdBursaryInstituteStatus()}
                 );
     }
