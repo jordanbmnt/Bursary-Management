@@ -47,9 +47,9 @@ public class JdbcStudentRepository implements StudentInterface {
 
   @Override
   public int allocateFunds(long id, int amount) {
-    return 0;
-  }
-
-  ;
+    return jdbcTemplate.update(
+        "UPDATE [BBD_BursaryDB].[dbo].[Bursary_Applicants] SET BursaryAmount=? WHERE StudentID=?",
+        new Object[] { student.getId() });
+  };
 
 }
