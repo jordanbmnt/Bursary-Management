@@ -17,8 +17,9 @@ public class JdbcStudentRepository implements StudentInterface {
 
   @Override
   public int save(Student student) {
+    String sql = "EXEC [BBD_BursaryDB].[dbo].[AddStudent] @FirstName = ?, @LastName = ?, @PhoneNumber = ?, @Email = ?, @RaceID = ?, @ID_Number = ?, @HeadOfDepartmentID = ?, @Motivation = ?;";
     return jdbcTemplate.update(
-        "EXEC [BBD_BursaryDB].[dbo].[AddStudent] @FirstName = ?, @LastName = ?, @PhoneNumber = ?, @Email = ?, @RaceID = ?, @ID_Number = ?, @HeadOfDepartmentID = ?, @Motivation = ?;",
+        sql,
         new Object[] { student.getFirstName(), student.getLastName(), student.getPhoneNumber(), student.getEmail(),
             student.getRace(), student.getIdentityDocument(), student.getHeadOfDepartmentID(),
             student.getMotivation() });
@@ -26,17 +27,19 @@ public class JdbcStudentRepository implements StudentInterface {
 
   @Override
   public int update(Student student) {
+    String sql = "EXEC [BBD_BursaryDB].[dbo].[UpdateStudentInfoIfPending] @StudentId =  ?, @FirstName = ?, @LastName = ?, @Email = ?, @PhoneNumber = ?";
     return jdbcTemplate.update(
-        "EXEC [BBD_BursaryDB].[dbo].[UpdateStudentInfoIfPending] @StudentId =  ?, @FirstName = ?, @LastName = ?, @Email = ?, @PhoneNumber = ?",
+        sql,
         new Object[] { student.getStudentId(), student.getFirstName(), student.getLastName(), student.getEmail(),
             student.getPhoneNumber() });
   }
 
   @Override
   public Student findById(Long id) {
+    String sql = "SELECT * FROM [BBD_BursaryDB].[dbo].[StudentDetails] WHERE StudentId=?";
     try {
       return jdbcTemplate.queryForObject(
-          "SELECT * FROM [BBD_BursaryDB].[dbo].[StudentDetails] WHERE StudentId=?",
+          sql,
           BeanPropertyRowMapper.newInstance(Student.class), id);
     } catch (IncorrectResultSizeDataAccessException e) {
       return null;
@@ -45,45 +48,52 @@ public class JdbcStudentRepository implements StudentInterface {
 
   @Override
   public int deleteById(Long id) {
-    return jdbcTemplate.update("EXEC [BBD_BursaryDB].[dbo].[DeleteStudentById] @StudentId=?", id);
+    String sql = "EXEC [BBD_BursaryDB].[dbo].[DeleteStudentById] @StudentId=?";
+    return jdbcTemplate.update(sql, id);
   }
 
   @Override
   public int allocateFunds(long id, int amount) {
+    String sql = "UPDATE [BBD_BursaryDB].[dbo].[Bursary_Applicants] SET BursaryAmount=? WHERE StudentID=?";
     return jdbcTemplate.update(
-        "UPDATE [BBD_BursaryDB].[dbo].[Bursary_Applicants] SET BursaryAmount=? WHERE StudentID=?",
+        sql,
         amount, id);
   }
 
   @Override
   public int updateStudentStatus(long id, int statusID) {
+    String sql = "UPDATE [BBD_BursaryDB].[dbo].[Bursary_Applicants] SET BursaryAmount=? WHERE StudentID=?";
     return jdbcTemplate.update(
-        "UPDATE [BBD_BursaryDB].[dbo].[Bursary_Applicants] SET BursaryAmount=? WHERE StudentID=?",
+        sql,
         statusID, id);
   }
 
   @Override
   public List<Student> getAll() {
-    return jdbcTemplate.query("SELECT * FROM [BBD_BursaryDB].[dbo].[StudentDetails]",
+    String sql = "SELECT * FROM [BBD_BursaryDB].[dbo].[StudentDetails]";
+    return jdbcTemplate.query(sql,
         BeanPropertyRowMapper.newInstance(Student.class));
   }
 
   @Override
   public List<Student> getAllApproved() {
-    return jdbcTemplate.query("SELECT * FROM [BBD_BursaryDB].[dbo].[AcceptedStudents]",
+    String sql = "SELECT * FROM [BBD_BursaryDB].[dbo].[AcceptedStudents]";
+    return jdbcTemplate.query(sql,
         BeanPropertyRowMapper.newInstance(Student.class));
   }
 
 
   @Override
   public List<Student> getAllRejected() {
-    return jdbcTemplate.query("SELECT * FROM [BBD_BursaryDB].[dbo].[RejectedStudents]",
+    String sql = "SELECT * FROM [BBD_BursaryDB].[dbo].[RejectedStudents]";
+    return jdbcTemplate.query(sql,
             BeanPropertyRowMapper.newInstance(Student.class));
   }
 
   @Override
   public List<Student> getAllPending() {
-    return jdbcTemplate.query("SELECT * FROM [BBD_BursaryDB].[dbo].[PendingStudents]",
+    String sql = "SELECT * FROM [BBD_BursaryDB].[dbo].[PendingStudents]";
+    return jdbcTemplate.query(sql,
             BeanPropertyRowMapper.newInstance(Student.class));
   }
 }
