@@ -10,7 +10,7 @@ import com.bbd.bursary.manager.Repository.StudentInterface;
 
 import java.util.List;
 
-@CrossOrigin(origins = "http://localhost:8081")
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/student")
 public class studentController {
