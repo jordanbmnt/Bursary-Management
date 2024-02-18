@@ -1,3 +1,7 @@
+USE BBD_BursaryDB;
+
+GO
+
 CREATE PROCEDURE dbo.UpdateInstitution
   @InstituteID INT,
   @InstituteName VARCHAR(100),

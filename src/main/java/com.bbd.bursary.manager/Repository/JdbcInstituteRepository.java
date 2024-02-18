@@ -36,6 +36,4 @@ public class JdbcInstituteRepository implements InstituteInterface {
                 new Object[] { institute.getBbdBursaryInstituteStatus()}
                 );
     }
-
-    public int
 }
