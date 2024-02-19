@@ -9,6 +9,10 @@ public class User {
     private int amount;
 
     // Constructor
+
+    public User() {
+
+    }
     public User(long userId, String email, String phoneNumber, String firstName, String lastName, int amount) {
         this.userId = userId;
         this.email = email;

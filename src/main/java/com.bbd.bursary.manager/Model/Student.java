@@ -1,5 +1,6 @@
 package com.bbd.bursary.manager.Model;
 
+
 public class Student {
     private long studentId;
     private String firstName;
@@ -11,7 +12,11 @@ public class Student {
     private int headOfDepartmentID;
     private String motivation;
 
-    // Constructor
+    // Default constructor
+    public Student() {
+    }
+
+    // Constructor with parameters for all fields
     public Student(long studentId, String firstName, String lastName, int identityDocument, String phoneNumber, String email, int race, int headOfDepartmentID, String motivation) {
         this.studentId = studentId;
         this.firstName = firstName;

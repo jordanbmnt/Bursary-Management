@@ -1,6 +1,8 @@
 /*
 package com.bbd.bursary.manager.Repository;
 
+import com.bbd.bursary.manager.Model.Institute;
+
 import java.util.List;
 
 public interface InstituteInterface {
