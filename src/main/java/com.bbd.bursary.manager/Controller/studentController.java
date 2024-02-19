@@ -43,7 +43,7 @@ public class studentController {
   }
 
   @GetMapping("/{id}")
-  public ResponseEntity<Student> getStudentById(@PathVariable("id") long id) {
+  public ResponseEntity<Student> getStudentById(@PathVariable("id") final long id) {
     Student student = studentRepository.findById(id);
     if (student != null) {
       return new ResponseEntity<>(student, HttpStatus.OK);
@@ -53,7 +53,7 @@ public class studentController {
   }
 
   @PostMapping
-  public ResponseEntity<String> createStudent(@RequestBody Student student) {
+  public ResponseEntity<String> createStudent(@RequestBody final Student student) {
     try {
       studentRepository.save(student);
       return new ResponseEntity<>("Student was created successfully.", HttpStatus.CREATED);
@@ -63,7 +63,7 @@ public class studentController {
   }
 
   @PutMapping("/fund/{id}")
-  public ResponseEntity<String> allocateFunds(@PathVariable("id") long id, @RequestParam("amount") int amount) {
+  public ResponseEntity<String> allocateFunds(@PathVariable("id") final long id, @RequestParam("amount") final int amount) {
     int rowsAffected = studentRepository.allocateFunds(id, amount);
     if (rowsAffected >  0) {
       return new ResponseEntity<>("Funds allocated successfully.", HttpStatus.OK);
@@ -73,7 +73,7 @@ public class studentController {
   }
 
   @DeleteMapping("/{id}")
-  public ResponseEntity<String> deleteStudent(@PathVariable("id") long id) {
+  public ResponseEntity<String> deleteStudent(@PathVariable("id") final long id) {
     try {
       int result = studentRepository.deleteById(id);
       if (result ==  0) {

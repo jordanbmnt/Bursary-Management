@@ -60,9 +60,10 @@ public class JdbcStudentRepository implements StudentInterface {
         amount, id);
   }
 
+  //1. Pending, 2. Approved, 3. Rejected
   @Override
   public int updateStudentStatus(long id, int statusID) {
-    String sql = "UPDATE [BBD_BursaryDB].[dbo].[Bursary_Applicants] SET BursaryAmount=? WHERE StudentID=?";
+    String sql = "UPDATE [BBD_BursaryDB].[dbo].[Bursary_Applicants] SET [BursaryApplicantStatus]=? WHERE StudentID=?";
     return jdbcTemplate.update(
         sql,
         statusID, id);
