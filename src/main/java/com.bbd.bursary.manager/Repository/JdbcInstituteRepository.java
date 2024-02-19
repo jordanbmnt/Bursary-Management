@@ -1,6 +1,5 @@
 package com.bbd.bursary.manager.Repository;
 import com.bbd.bursary.manager.Model.Institute;
-import com.bbd.bursary.manager.Model.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -28,7 +27,7 @@ public class JdbcInstituteRepository implements InstituteInterface {
                         institute.getPhoneNumber(),
                         institute.getEmail(),
                         institute.getBbdBursaryInstituteStatus(),
-                        institute.getAllocatedAmount()
+//                        institute.getAllocatedAmount()
                 });
     }
 
@@ -38,13 +37,18 @@ public class JdbcInstituteRepository implements InstituteInterface {
     }
 
     @Override
-    public int updateFunds(int id, double amount) {
-        String sql = "EXEC [BBD_BursaryDB].[dbo].[InsertInstitution]  @InstituteID = ?, @InstituteName = ?, @PhoneNumber = ?, @Email = ?, @BBDBursaryInstituteStatus = ?;";
-        return jdbcTemplate.update(sql, id, amount);
+    public int updateFunds( double amount, int id) {
+        String sql = "UPDATE Bursary_Applicants SET BursaryAmount = ? WHERE StudentId = ?;";
+        return jdbcTemplate.update(sql, amount, id);
     }
 
     @Override
     public int updateStatus(int id, String status) {
+        return 0;
+    }
+
+    @Override
+    public int updateStatus(int id, int status) {
         String sql = "UPDATE Institute_info SET BBDBursaryInstituteStatus = ? WHERE InstituteID = ?;";
         return jdbcTemplate.update(sql, id, status);
     }

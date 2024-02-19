@@ -19,17 +19,17 @@ public class InstitutesController {
     @Autowired
     InstituteInterface instituteRepository;
 
-    @GetMapping
-    public ResponseEntity<List<Institute>> getAllInstitutes() {
-        List<Institute> institutes = instituteRepository.getAllInstitutes();
-        if(institutes == null) {
-            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
-        } else {
-           return new ResponseEntity<>(institutes, HttpStatus.OK);
-        }
-    }
+//    @GetMapping
+//    public ResponseEntity<List<Institute>> getAllInstitutes() {
+//        List<Institute> institutes = instituteRepository.getAllInstitutes();
+//        if(institutes == null) {
+//            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+//        } else {
+//           return new ResponseEntity<>(institutes, HttpStatus.OK);
+//        }
+//    }
 
-    @PostMapping("/")
+    @PostMapping
     public ResponseEntity<String> addInstitute(@RequestBody Institute institute) {
         try {
             instituteRepository.save(institute);
@@ -40,18 +40,19 @@ public class InstitutesController {
     }
 
     @PutMapping("/funds/{id}")
-    public ResponseEntity<String> allocateInstituteFunds(@PathVariable("id") int instituteId, @RequestParam("amount") double allocatedAmount) {
+    public ResponseEntity<String> allocateInstituteFunds(@RequestBody() double amount, @PathVariable("id") int id) {
 
-            int rowsAffected = instituteRepository.updateFunds(instituteId, allocatedAmount);
+            int rowsAffected = instituteRepository.updateFunds(amount, id);
             if(rowsAffected > 0) {
                 return new ResponseEntity<>("Funds allocated successfully", HttpStatus.OK);
             } else {
-                return new ResponseEntity<>("No student found with id=" + instituteId, HttpStatus.NOT_FOUND);
+                System.out.print("rowsAffected" + rowsAffected);
+                return new ResponseEntity<>("No student found with id=" + id, HttpStatus.NOT_FOUND);
             }
     }
 
     @PutMapping("/status/{id}")
-    public ResponseEntity<String> updateInstitutePendingStatus(@PathVariable("id") int instituteId, @RequestParam("instituteId") String status) {
+    public ResponseEntity<String> updateInstitutePendingStatus(@PathVariable("id") int instituteId, @RequestParam("instituteId") int status) {
 
         int rowsAffected = instituteRepository.updateStatus(instituteId, status);
         if(rowsAffected > 0) {
