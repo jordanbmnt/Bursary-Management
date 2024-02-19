@@ -56,7 +56,7 @@ public class JdbcInstituteRepository implements InstituteInterface {
 
     @Override
     public int deleteById(Long id) {
-        String sql = "EXEC [BBD_BursaryDB].[dbo].[DeleteInstitution]"
-        return 0;
+        String sql = "EXEC [BBD_BursaryDB].[dbo].[DeleteInstitutionById] @InstituteID = ?";
+        return jdbcTemplate.update(sql, id);
     }
 }

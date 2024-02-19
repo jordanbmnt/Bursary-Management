@@ -60,4 +60,17 @@ public class InstitutesController {
             return new ResponseEntity<>("No institute found with id=" + instituteId, HttpStatus.NOT_FOUND);
         }
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteInstitution(@PathVariable("id") long id) {
+        try {
+            int result = instituteRepository.deleteById(id);
+            if(result == 0) {
+                return new ResponseEntity<>("Cannot find institute with id" + id, HttpStatus.NOT_FOUND);
+            }
+            return new ResponseEntity<>("Institute was deleted successfully.", HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>("Cannot delete institute.", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }
