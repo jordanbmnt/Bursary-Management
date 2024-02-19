@@ -62,7 +62,7 @@ public class studentController {
     }
   }
 
-  @PutMapping("/{id}/fund")
+  @PutMapping("/fund/{id}")
   public ResponseEntity<String> allocateFunds(@PathVariable("id") long id, @RequestParam("amount") int amount) {
     int rowsAffected = studentRepository.allocateFunds(id, amount);
     if (rowsAffected >  0) {

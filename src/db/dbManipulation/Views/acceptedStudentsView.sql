@@ -14,4 +14,4 @@ AS
     ON S.[StudentID] = B.[StudentID]
     INNER JOIN [Application_Status] AS A
     ON B.[BursaryApplicantStatus] = A.[Index]
-  WHERE A.[Status] = 'accepted';
+  WHERE A.[Status] = 'approved';
