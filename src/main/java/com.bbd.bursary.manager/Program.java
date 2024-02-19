@@ -3,7 +3,7 @@ package com.bbd.bursary.manager;
 import org.springframework.boot.*;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.ComponentScan;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @EnableAutoConfiguration
 @SpringBootApplication

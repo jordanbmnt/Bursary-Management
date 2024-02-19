@@ -1,6 +1,7 @@
 package com.bbd.bursary.manager.Repository;
 
 import com.bbd.bursary.manager.Model.Institute;
+import org.springframework.context.annotation.Bean;
 
 import java.util.List;
 
@@ -16,4 +17,5 @@ public interface InstituteInterface {
     Institute findById(Long instituteId);
 
     int deleteById(Long id);
+
 }

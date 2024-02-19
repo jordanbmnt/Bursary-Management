@@ -2,32 +2,35 @@ package com.bbd.bursary.manager.Controller;
 
 import com.bbd.bursary.manager.Model.Institute;
 import com.bbd.bursary.manager.Repository.JdbcInstituteRepository;
+import com.bbd.bursary.manager.Repository.InstituteInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@CrossOrigin(origins = "http://localhost:8080")
+
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/institute")
 public class InstitutesController {
 
-    JdbcInstituteRepository jdbcInstituteRepository;
     @Autowired
-    @PostMapping("/institute")
+    InstituteInterface instituteRepository;
+
+    @PostMapping("/")
     public ResponseEntity<String> addInstitute(@RequestBody Institute institute) {
         try {
-            jdbcInstituteRepository.save(institute);
+            instituteRepository.save(institute);
             return new ResponseEntity<>("Institute was created successfully.", HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
-    @PutMapping("/institute/{id}")
+    @PutMapping("/funds/{id}")
     public ResponseEntity<String> allocateInstituteFunds(@PathVariable("id") int instituteId, @RequestParam("amount") double allocatedAmount) {
 
-            int rowsAffected = jdbcInstituteRepository.updateFunds(instituteId, allocatedAmount);
+            int rowsAffected = instituteRepository.updateFunds(instituteId, allocatedAmount);
             if(rowsAffected > 0) {
                 return new ResponseEntity<>("Funds allocated successfully", HttpStatus.OK);
             } else {
@@ -35,10 +38,10 @@ public class InstitutesController {
             }
     }
 
-    @PutMapping("/institute/{id}")
+    @PutMapping("/status/{id}")
     public ResponseEntity<String> updateInstitutePendingStatus(@PathVariable("id") int instituteId, @RequestParam("instituteId") String status) {
 
-        int rowsAffected = jdbcInstituteRepository.updateStatus(instituteId, status);
+        int rowsAffected = instituteRepository.updateStatus(instituteId, status);
         if(rowsAffected > 0) {
             return new ResponseEntity<>("Status updated successfully", HttpStatus.OK);
         } else {

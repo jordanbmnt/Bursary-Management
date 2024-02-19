@@ -1,5 +1,4 @@
 package com.bbd.bursary.manager.Repository;
-
 import com.bbd.bursary.manager.Model.Institute;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -24,6 +23,11 @@ public class JdbcInstituteRepository implements InstituteInterface {
     }
 
     @Override
+    public int update(Institute institute) {
+        return 0;
+    }
+
+    @Override
     public int updateFunds(int id, double amount) {
         String sql = "EXEC [BBD_BursaryDB].[dbo].[InsertInstitution]  @InstituteID = ?, @InstituteName = ?, @PhoneNumber = ?, @Email = ?, @BBDBursaryInstituteStatus = ?;";
         return jdbcTemplate.update(sql, id, amount);
@@ -33,5 +37,15 @@ public class JdbcInstituteRepository implements InstituteInterface {
     public int updateStatus(int id, String status) {
         String sql = "UPDATE Institute_info SET BBDBursaryInstituteStatus = ? WHERE InstituteID = ?;";
         return jdbcTemplate.update(sql, id, status);
+    }
+
+    @Override
+    public Institute findById(Long instituteId) {
+        return null;
+    }
+
+    @Override
+    public int deleteById(Long id) {
+        return 0;
     }
 }
