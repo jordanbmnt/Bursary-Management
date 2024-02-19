@@ -2,7 +2,7 @@ USE BBD_BursaryDB;
 
 GO
 
-CREATE VIEW RejectedStudent
+CREATE VIEW RejectedStudents
 AS
   SELECT S.[StudentID], U.[FirstName], U.[LastName], B.[BursaryApplicantStatus], C.[Email], C.[PhoneNumber]
   FROM [Student] AS S
