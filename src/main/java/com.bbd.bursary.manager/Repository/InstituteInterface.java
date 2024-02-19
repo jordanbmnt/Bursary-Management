@@ -14,7 +14,7 @@ public interface InstituteInterface {
 
     int updateStatus(int id, String status);
 
-    List<Student> getAllInstitutes();
+    List<Institute> getAllInstitutes();
 
     Institute findById(Long instituteId);
 

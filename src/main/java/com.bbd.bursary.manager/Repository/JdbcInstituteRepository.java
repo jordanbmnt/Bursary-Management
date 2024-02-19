@@ -2,6 +2,7 @@ package com.bbd.bursary.manager.Repository;
 import com.bbd.bursary.manager.Model.Institute;
 import com.bbd.bursary.manager.Model.Student;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -13,8 +14,9 @@ public class JdbcInstituteRepository implements InstituteInterface {
     private JdbcTemplate jdbcTemplate;
 
     @Override
-    public List<Student> getAllInstitutes() {
-        String sql = ""
+    public List<Institute> getAllInstitutes() {
+        String sql = "SELECT * FROM [BBD_BursaryDB].[dbo].[viewAllInstitutions]";
+        return jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(Institute.class));
     }
 
     @Override

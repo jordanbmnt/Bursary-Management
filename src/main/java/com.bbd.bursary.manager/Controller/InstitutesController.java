@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 
 @CrossOrigin(origins = "*")
 @RestController
@@ -16,6 +18,16 @@ public class InstitutesController {
 
     @Autowired
     InstituteInterface instituteRepository;
+
+    @GetMapping("/")
+    public ResponseEntity<List<Institute>> getAllInstitutes() {
+        List<Institute> institutes = instituteRepository.getAllInstitutes();
+        if(institutes == null) {
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        } else {
+           return new ResponseEntity<>(institutes, HttpStatus.OK);
+        }
+    }
 
     @PostMapping("/")
     public ResponseEntity<String> addInstitute(@RequestBody Institute institute) {
