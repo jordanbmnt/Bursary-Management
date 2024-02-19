@@ -39,26 +39,27 @@ public class InstitutesController {
         }
     }
 
-    @PutMapping("/funds/{id}")
-    public ResponseEntity<String> allocateInstituteFunds(@RequestBody() double amount, @PathVariable("id") int id) {
-
-            int rowsAffected = instituteRepository.updateFunds(amount, id);
-            if(rowsAffected > 0) {
-                return new ResponseEntity<>("Funds allocated successfully", HttpStatus.OK);
-            } else {
-                System.out.print("rowsAffected" + rowsAffected);
-                return new ResponseEntity<>("No student found with id=" + id, HttpStatus.NOT_FOUND);
-            }
-    }
+//    @PutMapping("/funds/{id}")
+//    public ResponseEntity<String> allocateInstituteFunds(@RequestBody() double amount, @PathVariable("id") int id) {
+//
+//            int rowsAffected = instituteRepository.updateFunds(amount, id);
+//            if(rowsAffected > 0) {
+//                return new ResponseEntity<>("Funds allocated successfully", HttpStatus.OK);
+//            } else {
+//                System.out.print("rowsAffected" + rowsAffected);
+//                return new ResponseEntity<>("No student found with id=" + id, HttpStatus.NOT_FOUND);
+//            }
+//    }
 
     @PutMapping("/status/{id}")
-    public ResponseEntity<String> updateInstitutePendingStatus(@PathVariable("id") int instituteId, @RequestParam("instituteId") int status) {
+    public ResponseEntity<String> updateInstitutePendingStatus(@RequestBody Institute institute, @PathVariable("id") int id ) {
 
-        int rowsAffected = instituteRepository.updateStatus(instituteId, status);
-        if(rowsAffected > 0) {
-            return new ResponseEntity<>("Status updated successfully", HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>("No institute found with id=" + instituteId, HttpStatus.NOT_FOUND);
+        try {
+            int rowsAffected = instituteRepository.updateStatus(institute, id);
+            return (rowsAffected > 0) ? new ResponseEntity<>("Status updated successfully", HttpStatus.OK) : new ResponseEntity<>("Status didnt updated successfully", HttpStatus.OK);
+        } catch (Exception e) {
+            System.out.println(e);
+            return new ResponseEntity<>("No institute found with id=" + id, HttpStatus.NOT_FOUND);
         }
     }
 

@@ -43,14 +43,9 @@ public class JdbcInstituteRepository implements InstituteInterface {
     }
 
     @Override
-    public int updateStatus(int id, String status) {
-        return 0;
-    }
-
-    @Override
-    public int updateStatus(int id, int status) {
+    public int updateStatus(Institute institute, int id) {
         String sql = "UPDATE Institute_info SET BBDBursaryInstituteStatus = ? WHERE InstituteID = ?;";
-        return jdbcTemplate.update(sql, id, status);
+        return jdbcTemplate.update(sql, institute, id);
     }
 
     @Override

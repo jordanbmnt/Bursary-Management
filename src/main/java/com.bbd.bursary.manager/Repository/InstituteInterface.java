@@ -12,11 +12,10 @@ public interface InstituteInterface {
 
     int updateFunds(double amount, int id);
 
-    int updateStatus(int id, String status);
+    int updateStatus(Institute institute, int id);
 
     List<Institute> getAllInstitutes();
 
-    int updateStatus(int id, int status);
 
     Institute findById(Long instituteId);
 
