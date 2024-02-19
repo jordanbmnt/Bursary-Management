@@ -15,7 +15,7 @@ public class JdbcInstituteRepository implements InstituteInterface {
 
     @Override
     public List<Institute> getAllInstitutes() {
-        String sql = "SELECT * FROM [BBD_BursaryDB].[dbo].[viewAllInstitutions]";
+        String sql = "SELECT * FROM [BBD_BursaryDB].[dbo].[viewAllInstitutions];";
         return jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(Institute.class));
     }
 

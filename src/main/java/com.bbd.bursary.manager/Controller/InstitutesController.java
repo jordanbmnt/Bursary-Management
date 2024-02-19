@@ -19,7 +19,7 @@ public class InstitutesController {
     @Autowired
     InstituteInterface instituteRepository;
 
-    @GetMapping("/")
+    @GetMapping
     public ResponseEntity<List<Institute>> getAllInstitutes() {
         List<Institute> institutes = instituteRepository.getAllInstitutes();
         if(institutes == null) {
