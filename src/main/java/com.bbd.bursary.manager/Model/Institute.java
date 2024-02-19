@@ -8,6 +8,9 @@ public class Institute {
     private String bbdBursaryInstituteStatus;
     private double allocatedAmount;
 
+    public Institute() {
+    }
+
     // Constructor
     public Institute(int instituteId, String instituteName, String phoneNumber, String email, String bbdBursaryInstituteStatus, double allocatedAmount) {
         this.instituteId = instituteId;
