@@ -22,15 +22,15 @@ public class JdbcStudentRepository implements StudentInterface {
         sql,
         new Object[] { student.getFirstName(), student.getLastName(), student.getPhoneNumber(), student.getEmail(),
             student.getRace(), student.getIdentityDocument(), student.getHeadOfDepartmentID(),
-            student.getMotivation(), student.getBursaryAmount(), student.getBursaryApplicantStatus() });
+            student.getMotivation() });
   }
 
   @Override
-  public int update(Student student) {
+  public int update(long id, Student student) {
     String sql = "EXEC [BBD_BursaryDB].[dbo].[UpdateStudentInfoIfPending] @StudentId =  ?, @FirstName = ?, @LastName = ?, @Email = ?, @PhoneNumber = ?";
     return jdbcTemplate.update(
         sql,
-        new Object[] { student.getStudentId(), student.getFirstName(), student.getLastName(), student.getEmail(),
+        new Object[] { id, student.getFirstName(), student.getLastName(), student.getEmail(),
             student.getPhoneNumber() });
   }
 
@@ -50,14 +50,6 @@ public class JdbcStudentRepository implements StudentInterface {
   public int deleteById(Long id) {
     String sql = "EXEC [BBD_BursaryDB].[dbo].[DeleteStudentById] @StudentId=?";
     return jdbcTemplate.update(sql, id);
-  }
-
-  @Override
-  public int allocateFunds(long id, int amount) {
-    String sql = "UPDATE [BBD_BursaryDB].[dbo].[Bursary_Applicants] SET BursaryAmount=? WHERE StudentID=?";
-    return jdbcTemplate.update(
-        sql,
-        amount, id);
   }
 
   //1. Pending, 2. Approved, 3. Rejected
