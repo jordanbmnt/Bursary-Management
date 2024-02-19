@@ -22,7 +22,7 @@ public class JdbcStudentRepository implements StudentInterface {
         sql,
         new Object[] { student.getFirstName(), student.getLastName(), student.getPhoneNumber(), student.getEmail(),
             student.getRace(), student.getIdentityDocument(), student.getHeadOfDepartmentID(),
-            student.getMotivation() });
+            student.getMotivation(), student.getBursaryAmount(), student.getBursaryApplicantStatus() });
   }
 
   @Override
