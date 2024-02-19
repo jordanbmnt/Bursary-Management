@@ -1,8 +1,11 @@
 package com.bbd.bursary.manager.Repository;
 import com.bbd.bursary.manager.Model.Institute;
+import com.bbd.bursary.manager.Model.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 @Repository
 public class JdbcInstituteRepository implements InstituteInterface {
@@ -10,10 +13,15 @@ public class JdbcInstituteRepository implements InstituteInterface {
     private JdbcTemplate jdbcTemplate;
 
     @Override
-    public int save(Institute institute) {
+    public List<Student> getAllInstitutes() {
+        String sql = ""
+    }
+
+    @Override
+    public void save(Institute institute) {
         String sql = "EXEC [BBD_BursaryDB].[dbo].[InsertInstitution] @InstituteName = ?, @PhoneNumber = ?, @Email = ?, @BBDBursaryInstituteStatus = ?;";
-        return jdbcTemplate.update(sql,
-                new Object[] {
+        jdbcTemplate.update(sql,
+                new Object[]{
                         institute.getInstituteName(),
                         institute.getPhoneNumber(),
                         institute.getEmail(),
