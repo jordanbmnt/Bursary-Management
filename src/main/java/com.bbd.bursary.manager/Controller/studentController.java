@@ -43,7 +43,7 @@ public class studentController {
   }
 
   @GetMapping("/{id}")
-  public ResponseEntity<Student> getStudentById(@PathVariable("id") long id) {
+  public ResponseEntity<Student> getStudentById(@PathVariable("id") final long id) {
     Student student = studentRepository.findById(id);
     if (student != null) {
       return new ResponseEntity<>(student, HttpStatus.OK);
@@ -53,7 +53,7 @@ public class studentController {
   }
 
   @PostMapping
-  public ResponseEntity<String> createStudent(@RequestBody Student student) {
+  public ResponseEntity<String> createStudent(@RequestBody final Student student) {
     try {
       studentRepository.save(student);
       return new ResponseEntity<>("Student was created successfully.", HttpStatus.CREATED);
@@ -62,18 +62,29 @@ public class studentController {
     }
   }
 
-  @PutMapping("/{id}/fund")
-  public ResponseEntity<String> allocateFunds(@PathVariable("id") long id, @RequestParam("amount") int amount) {
-    int rowsAffected = studentRepository.allocateFunds(id, amount);
-    if (rowsAffected >  0) {
-      return new ResponseEntity<>("Funds allocated successfully.", HttpStatus.OK);
-    } else {
-      return new ResponseEntity<>("No student found with id=" + id, HttpStatus.NOT_FOUND);
+  @PutMapping("/{id}")
+  public ResponseEntity<String> updateStudent(@PathVariable("id") final long id, @RequestBody final Student student) {
+    try{
+      int rowsAffected = studentRepository.update(id, student);
+      return rowsAffected > 0 ? new ResponseEntity<>("Student updated successfully.", HttpStatus.OK) : new ResponseEntity<>("Student can not be updated because status is not pending.", HttpStatus.OK);
+    } catch (Exception e) {
+      return new ResponseEntity<>("Student did not update", HttpStatus.NOT_FOUND);
+    }
+  }
+
+
+  @PutMapping("/status/{id}/{status}")
+  public ResponseEntity<String> updateStudentStatus(@PathVariable("id") final long id, @PathVariable("status") final int statusID) {
+    try{
+      studentRepository.updateStudentStatus(id, statusID);
+      return new ResponseEntity<>("Student updated successfully.", HttpStatus.OK);
+    } catch (Exception e) {
+      return new ResponseEntity<>("Student did not update", HttpStatus.NOT_FOUND);
     }
   }
 
   @DeleteMapping("/{id}")
-  public ResponseEntity<String> deleteStudent(@PathVariable("id") long id) {
+  public ResponseEntity<String> deleteStudent(@PathVariable("id") final long id) {
     try {
       int result = studentRepository.deleteById(id);
       if (result ==  0) {
