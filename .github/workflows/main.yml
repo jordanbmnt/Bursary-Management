@@ -45,6 +45,18 @@ jobs:
       - uses: azure/sql-action@v2
         with:
           connection-string: ${{ secrets.AZURE_SQL_CONNECTION_STRING }}
+          path: "./src/db/dbManipulation/Procedures/addInstituteProcedure.sql"
+      - uses: azure/sql-action@v2
+        with:
+          connection-string: ${{ secrets.AZURE_SQL_CONNECTION_STRING }}
+          path: "./src/db/dbManipulation/Procedures/deleteInstituteProcedure.sql"
+      - uses: azure/sql-action@v2
+        with:
+          connection-string: ${{ secrets.AZURE_SQL_CONNECTION_STRING }}
+          path: "./src/db/dbManipulation/Procedures/updateInstituteProcedure.sql"
+      - uses: azure/sql-action@v2
+        with:
+          connection-string: ${{ secrets.AZURE_SQL_CONNECTION_STRING }}
           path: "./src/db/dbManipulation/Views/acceptedStudentsView.sql"
       - uses: azure/sql-action@v2
         with:
