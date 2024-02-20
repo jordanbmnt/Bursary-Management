@@ -1,4 +1,4 @@
-/*
+
 package com.bbd.bursary.manager.Repository;
 
 import com.bbd.bursary.manager.Model.Institute;
@@ -18,4 +18,4 @@ public interface InstituteInterface {
 
     int getBudget(long id);
 
-}*/
+}
