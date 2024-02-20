@@ -85,15 +85,15 @@ jobs:
       - uses: azure/sql-action@v2
         with:
           connection-string: ${{ secrets.AZURE_SQL_CONNECTION_STRING }}
-          path: "./src/db/dbManipulation/Views/funded_institutions.sql"
+          path: "./src/db/dbManipulation/Views/fundedInstitutions.sql"
       - uses: azure/sql-action@v2
         with:
           connection-string: ${{ secrets.AZURE_SQL_CONNECTION_STRING }}
-          path: "./src/db/dbManipulation/Views/rejected_institutions.sql"
+          path: "./src/db/dbManipulation/Views/rejectedInstitutions.sql"
       - uses: azure/sql-action@v2    
         with:
           connection-string: ${{ secrets.AZURE_SQL_CONNECTION_STRING }}
-          path: "./src/db/dbManipulation/Views/pending_institutions.sql"
+          path: "./src/db/dbManipulation/Views/pendingInstitutions.sql"
       - uses: azure/sql-action@v2
         with:
           connection-string: ${{ secrets.AZURE_SQL_CONNECTION_STRING }}

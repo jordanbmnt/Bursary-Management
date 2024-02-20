@@ -27,7 +27,6 @@ public class JdbcInstituteRepository implements InstituteInterface {
                         institute.getPhoneNumber(),
                         institute.getEmail(),
                         institute.getBbdBursaryInstituteStatus(),
-//                      institute.getAllocatedAmount()
                 });
     }
 
