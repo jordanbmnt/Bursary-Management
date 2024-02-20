@@ -62,13 +62,24 @@ public class studentController {
     }
   }
 
-  @PutMapping("/fund/{id}")
-  public ResponseEntity<String> allocateFunds(@PathVariable("id") final long id, @RequestParam("amount") final int amount) {
-    int rowsAffected = studentRepository.allocateFunds(id, amount);
-    if (rowsAffected >  0) {
-      return new ResponseEntity<>("Funds allocated successfully.", HttpStatus.OK);
-    } else {
-      return new ResponseEntity<>("No student found with id=" + id, HttpStatus.NOT_FOUND);
+  @PutMapping("/{id}")
+  public ResponseEntity<String> updateStudent(@PathVariable("id") final long id, @RequestBody final Student student) {
+    try{
+      int rowsAffected = studentRepository.update(id, student);
+      return rowsAffected > 0 ? new ResponseEntity<>("Student updated successfully.", HttpStatus.OK) : new ResponseEntity<>("Student can not be updated because status is not pending.", HttpStatus.OK);
+    } catch (Exception e) {
+      return new ResponseEntity<>("Student did not update", HttpStatus.NOT_FOUND);
+    }
+  }
+
+
+  @PutMapping("/status/{id}/{status}")
+  public ResponseEntity<String> updateStudentStatus(@PathVariable("id") final long id, @PathVariable("status") final int statusID) {
+    try{
+      studentRepository.updateStudentStatus(id, statusID);
+      return new ResponseEntity<>("Student updated successfully.", HttpStatus.OK);
+    } catch (Exception e) {
+      return new ResponseEntity<>("Student did not update", HttpStatus.NOT_FOUND);
     }
   }
 
