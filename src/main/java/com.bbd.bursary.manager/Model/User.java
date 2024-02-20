@@ -22,6 +22,7 @@ public class User {
         this.amount = amount;
     }
 
+
     // Getters and setters
     public long getUserId() {
         return userId;
