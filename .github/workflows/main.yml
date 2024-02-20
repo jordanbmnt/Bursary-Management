@@ -85,6 +85,18 @@ jobs:
       - uses: azure/sql-action@v2
         with:
           connection-string: ${{ secrets.AZURE_SQL_CONNECTION_STRING }}
+          path: "./src/db/dbManipulation/Views/funded_institutions.sql"
+      - uses: azure/sql-action@v2
+        with:
+          connection-string: ${{ secrets.AZURE_SQL_CONNECTION_STRING }}
+          path: "./src/db/dbManipulation/Views/rejected_institutions.sql"
+      - uses: azure/sql-action@v2    
+        with:
+          connection-string: ${{ secrets.AZURE_SQL_CONNECTION_STRING }}
+          path: "./src/db/dbManipulation/Views/pending_institutions.sql"
+      - uses: azure/sql-action@v2
+        with:
+          connection-string: ${{ secrets.AZURE_SQL_CONNECTION_STRING }}
           path: "./src/db/dbManipulation/Functions/averageInstitueGrade.sql"
 
       # Azure logout
