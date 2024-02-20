@@ -14,7 +14,7 @@ public class JdbcInstituteRepository implements InstituteInterface {
 
     @Override
     public List<Institute> getAllInstitutes() {
-        String sql = "SELECT * FROM [BBD_BursaryDB].[dbo].[viewAllInstitutions];";
+        String sql = "SELECT * FROM [BBD_BursaryDB].[dbo].[InstituteInformation];";
         return jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(Institute.class));
     }
 
@@ -27,7 +27,7 @@ public class JdbcInstituteRepository implements InstituteInterface {
                         institute.getPhoneNumber(),
                         institute.getEmail(),
                         institute.getBbdBursaryInstituteStatus(),
-//                        institute.getAllocatedAmount()
+//                      institute.getAllocatedAmount()
                 });
     }
 
@@ -43,9 +43,9 @@ public class JdbcInstituteRepository implements InstituteInterface {
     }
 
     @Override
-    public int updateStatus(Institute institute, int id) {
+    public int updateStatus(int id, int status) {
         String sql = "UPDATE Institute_info SET BBDBursaryInstituteStatus = ? WHERE InstituteID = ?;";
-        return jdbcTemplate.update(sql, institute, id);
+        return jdbcTemplate.update(sql, id, status);
     }
 
     @Override
@@ -55,7 +55,7 @@ public class JdbcInstituteRepository implements InstituteInterface {
 
     @Override
     public int deleteById(Long id) {
-        String sql = "EXEC [BBD_BursaryDB].[dbo].[DeleteInstitutionById] @InstituteID = ?";
+        String sql = "EXEC [BBD_BursaryDB].[dbo].[DeleteInstitution] @InstituteID = ?";
         return jdbcTemplate.update(sql, id);
     }
 }

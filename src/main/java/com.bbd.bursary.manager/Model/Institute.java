@@ -5,14 +5,14 @@ public class Institute {
     private String instituteName;
     private String phoneNumber;
     private String email;
-    private int bbdBursaryInstituteStatus;
+    private String bbdBursaryInstituteStatus;
     private double allocatedAmount;
 
     public Institute() {
     }
 
     // Constructor
-    public Institute(int instituteId, String instituteName, String phoneNumber, String email, int bbdBursaryInstituteStatus, double allocatedAmount) {
+    public Institute(int instituteId, String instituteName, String phoneNumber, String email, String bbdBursaryInstituteStatus, double allocatedAmount) {
         this.instituteId = instituteId;
         this.instituteName = instituteName;
         this.phoneNumber = phoneNumber;
@@ -54,11 +54,11 @@ public class Institute {
         this.email = email;
     }
 
-    public int getBbdBursaryInstituteStatus() {
+    public String getBbdBursaryInstituteStatus() {
         return bbdBursaryInstituteStatus;
     }
 
-    public void setBbdBursaryInstituteStatus(int bbdBursaryInstituteStatus) {
+    public void setBbdBursaryInstituteStatus(String bbdBursaryInstituteStatus) {
         this.bbdBursaryInstituteStatus = bbdBursaryInstituteStatus;
     }
 

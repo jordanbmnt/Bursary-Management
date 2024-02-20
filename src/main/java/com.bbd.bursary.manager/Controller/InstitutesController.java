@@ -19,15 +19,15 @@ public class InstitutesController {
     @Autowired
     InstituteInterface instituteRepository;
 
-//    @GetMapping
-//    public ResponseEntity<List<Institute>> getAllInstitutes() {
-//        List<Institute> institutes = instituteRepository.getAllInstitutes();
-//        if(institutes == null) {
-//            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
-//        } else {
-//           return new ResponseEntity<>(institutes, HttpStatus.OK);
-//        }
-//    }
+    @GetMapping
+    public ResponseEntity<List<Institute>> getAllInstitutes() {
+        List<Institute> institutes = instituteRepository.getAllInstitutes();
+        if(institutes == null) {
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        } else {
+           return new ResponseEntity<>(institutes, HttpStatus.OK);
+        }
+    }
 
     @PostMapping
     public ResponseEntity<String> addInstitute(@RequestBody Institute institute) {
@@ -39,26 +39,26 @@ public class InstitutesController {
         }
     }
 
-//    @PutMapping("/funds/{id}")
-//    public ResponseEntity<String> allocateInstituteFunds(@RequestBody() double amount, @PathVariable("id") int id) {
-//
-//            int rowsAffected = instituteRepository.updateFunds(amount, id);
-//            if(rowsAffected > 0) {
-//                return new ResponseEntity<>("Funds allocated successfully", HttpStatus.OK);
-//            } else {
-//                System.out.print("rowsAffected" + rowsAffected);
-//                return new ResponseEntity<>("No student found with id=" + id, HttpStatus.NOT_FOUND);
-//            }
-//    }
+    @PutMapping("/funds/{id}/{amount}")
+    public ResponseEntity<String> allocateInstituteFunds(@PathVariable("amount") double amount, @PathVariable("id") int id) {
 
-    @PutMapping("/status/{id}")
-    public ResponseEntity<String> updateInstitutePendingStatus(@RequestBody Institute institute, @PathVariable("id") int id ) {
+            int rowsAffected = instituteRepository.updateFunds(amount, id);
+            if(rowsAffected > 0) {
+                return new ResponseEntity<>("Funds allocated successfully", HttpStatus.OK);
+            } else {
+                System.out.print("rowsAffected" + rowsAffected);
+                return new ResponseEntity<>("No student found with id=" + id, HttpStatus.NOT_FOUND);
+            }
+    }
+
+    //Come back to this
+    @PutMapping("/status/{id}/{status}")
+    public ResponseEntity<String> updateInstitutePendingStatus(@PathVariable("status") final int status, @PathVariable("id") final int id ) {
 
         try {
-            int rowsAffected = instituteRepository.updateStatus(institute, id);
+            int rowsAffected = instituteRepository.updateStatus(id, status);
             return (rowsAffected > 0) ? new ResponseEntity<>("Status updated successfully", HttpStatus.OK) : new ResponseEntity<>("Status didnt updated successfully", HttpStatus.OK);
         } catch (Exception e) {
-            System.out.println(e);
             return new ResponseEntity<>("No institute found with id=" + id, HttpStatus.NOT_FOUND);
         }
     }
@@ -72,6 +72,7 @@ public class InstitutesController {
             }
             return new ResponseEntity<>("Institute was deleted successfully.", HttpStatus.OK);
         } catch (Exception e) {
+            System.out.println(e);
             return new ResponseEntity<>("Cannot delete institute.", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }

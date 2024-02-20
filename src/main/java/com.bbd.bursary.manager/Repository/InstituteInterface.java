@@ -12,7 +12,7 @@ public interface InstituteInterface {
 
     int updateFunds(double amount, int id);
 
-    int updateStatus(Institute institute, int id);
+    int updateStatus(int id, int status);
 
     List<Institute> getAllInstitutes();
 
