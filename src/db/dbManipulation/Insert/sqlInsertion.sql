@@ -15,7 +15,8 @@ INSERT INTO
   ([Role])
 VALUES
   ('BBD'),
-  ('Institute');
+  ('Institute'),
+  ('Student');
 
 INSERT INTO
   [dbo].[Contact_Details]
