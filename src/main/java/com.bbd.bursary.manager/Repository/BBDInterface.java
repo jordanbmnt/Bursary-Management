@@ -3,6 +3,8 @@ package com.bbd.bursary.manager.Repository;
 import com.bbd.bursary.manager.Model.User;
 
 import java.util.List;
+
+import com.bbd.bursary.manager.Model.Student;
 import com.bbd.bursary.manager.Model.User;
 import com.bbd.bursary.manager.Model.Institute;
 
@@ -18,5 +20,18 @@ public interface BBDInterface {
     List<Institute> findAllFundedInstitutions();
 
     int allocateFunds(long id, int amount);
+<<<<<<< HEAD
+
+    int allocateFundsToAllInstitutes(long id);
+
+    List<User> findAllInstitutions();
+
+    // New method to delete by ID
+    int deleteById(Long id);
+    User getUserById(Long id);
+
+    List<User> getAll();
+=======
     List<Institute> findAllInstitutions();
+>>>>>>> 669ff6c2324b996a08975497ddd73a74bf72776c
 }

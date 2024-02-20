@@ -16,6 +16,7 @@ public interface StudentInterface  {
 
     int updateStudentStatus(long id, int statusID);
 
+
     List<Student> getAll();
 
     List<Student> getAllApproved();
